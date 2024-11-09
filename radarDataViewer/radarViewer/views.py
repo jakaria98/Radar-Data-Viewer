@@ -15,11 +15,11 @@ def upload_and_process_file(request):
     try:
         file = request.FILES.get('file')
         if not file:
-            return JsonResponse({"error": "No file provided. Please upload a .SORT file."}, status=400)
+            return create_error_response("No file provided. Please upload a .SORT file.", 400)
 
         # Validate the file type
         if not file.name.endswith('.sort'):
-            return JsonResponse({"error": "Invalid file type. Please upload a .SORT file."}, status=400)
+            return create_error_response("Invalid file type. Please upload a .SORT file.", 400)
 
         # Save the .SORT file to the database for reference
         radar_file = RadarFile(file=file)
@@ -28,11 +28,11 @@ def upload_and_process_file(request):
         # Process the .SORT file to extract data
         data = process_sort_file(radar_file.file.path)
         if data is None:
-            return JsonResponse({"error": "Failed to parse and extract data from the .SORT file. Ensure the file format is correct."}, status=500)
+            return create_error_response("Failed to parse and extract data from the .SORT file. Ensure the file format is correct.", 500)
 
         image_base64_list = generate_images_base64(data)
         if image_base64_list is None:
-            return JsonResponse({"error": "Failed to generate images from the data. Please try again later."}, status=500)
+            return create_error_response("Failed to generate images from the data. Please try again later.", 500)
 
         return JsonResponse({
             "message": "File processed successfully",
@@ -41,4 +41,16 @@ def upload_and_process_file(request):
 
     except Exception as e:
         logger.error(f"Unexpected error during file processing: {e}")
-        return JsonResponse({"error": "An unexpected error occurred while processing the file. Please contact support if the problem persists."}, status=500)
+        return create_error_response("An unexpected error occurred while processing the file. Please contact support if the problem persists.", 500)
+
+
+def create_error_response(message, status_code=400):
+    """
+    Helper function to create a consistent JSON error response.
+    Args:
+        message (str): The error message to be returned.
+        status_code (int): The HTTP status code for the response (default is 400).
+    Returns:
+        JsonResponse: A Django JsonResponse object with the error message and status code.
+    """
+    return JsonResponse({"error": message}, status=status_code)
