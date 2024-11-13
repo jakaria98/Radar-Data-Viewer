@@ -1,9 +1,8 @@
 from django.db import models
-
-# Create your models here.
 from datetime import datetime
+import os
 
-# fuction to add timestamp to the uploaded file
+# function to add timestamp to the uploaded file
 def timestamped_file_path(instance, filename):
     # Get the file extension
     ext = filename.split('.')[-1]
