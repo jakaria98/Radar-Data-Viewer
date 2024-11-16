@@ -7,46 +7,70 @@ import logging
 logger = logging.getLogger(__name__)
 
 def create_error_response(message, status_code=400):
-    """
-    Helper function to create a consistent JSON error response.
-    """
     return JsonResponse({"error": message}, status=status_code)
 
-
 def process_sort_file(file_path):
-    """
-    Processes the .SORT file by dynamically parsing the header and extracting binary data.
-    """
     try:
         with open(file_path, 'rb') as f:
-            # Read the header (assume first 256 bytes contain metadata)
-            header_size = 256
-            header = f.read(header_size).decode('utf-8', errors='ignore')
-            metadata = parse_sort_header(header)
+            # Read the header
+            header_lines = []
+            while True:
+                pos = f.tell()
+                line = f.readline()
+                if not line:
+                    break  # End of file
+                try:
+                    decoded_line = line.decode('utf-8', errors='ignore').strip()
+                    header_lines.append(decoded_line)
+                    if 'DATA_START' in decoded_line or 'END_HEADER' in decoded_line:  # Example marker
+                        break
+                except UnicodeDecodeError:
+                    # Likely binary data; rewind to the start of binary data
+                    f.seek(pos)
+                    break
 
-            # Read the binary data after the header
+            header_size = f.tell()
             binary_data = f.read()
-            num_ranges = metadata['num_ranges']
-            num_samples = metadata['num_samples']
-            total_values = num_ranges * num_samples
 
-            # Convert binary data to a NumPy array
-            data_array = np.frombuffer(binary_data[:total_values * 2], dtype=np.uint16)
+            # Parse the header metadata
+            metadata = parse_sort_header("\n".join(header_lines))
+
+            # Calculate total number of data points
+            data_point_size = 2  # Size of uint16 in bytes
+            total_data_points = len(binary_data) // data_point_size
+
+            # Determine num_samples
+            num_samples = metadata.get('num_samples')
+            if num_samples is None:
+                # If num_samples is not provided, we might assume a standard value or infer it
+                # For now, let's attempt to find a divisor of total_data_points
+                # Common sample sizes could be 1024, 2048, etc.
+                possible_samples = [1024, 2048, 4096]
+                num_samples = next((s for s in possible_samples if total_data_points % s == 0), None)
+                if num_samples is None:
+                    logger.error("Unable to determine 'num_samples' from data.")
+                    return None, None
+
+            # Calculate num_ranges
+            num_ranges = total_data_points // num_samples
+
+            # Read the binary data into a NumPy array
+            data_array = np.frombuffer(binary_data[:total_data_points * data_point_size], dtype=np.uint16)
             data = data_array.reshape((num_ranges, num_samples))
 
-        return data, metadata
+            # Update metadata with inferred values
+            metadata['num_ranges'] = num_ranges
+            metadata['num_samples'] = num_samples
+
+            logger.info(f"Processed file {file_path}: {num_ranges} ranges, {num_samples} samples.")
+            return data, metadata
     except Exception as e:
         logger.error(f"Error processing .SORT file: {e}")
         return None, None
 
-
 def parse_sort_header(header):
-    """
-    Parses the .SORT file header to extract metadata dynamically.
-    """
     metadata = {}
     try:
-        # Extract values from the header using keywords
         for line in header.splitlines():
             if 'NRRANGES' in line:
                 metadata['num_ranges'] = int(line.split(':')[1].strip())
@@ -56,29 +80,29 @@ def parse_sort_header(header):
                 metadata['range'] = line.split(':')[1].strip()
             elif 'DATE' in line or 'TIME' in line:
                 metadata['timestamp'] = line.strip()
-
-        return metadata
     except Exception as e:
         logger.error(f"Error parsing .SORT header: {e}")
-        return metadata
-
+    return metadata
 
 def generate_images_base64(data):
-    """
-    Generates Base64-encoded images from radar data.
-    """
     image_base64_list = []
     try:
-        # Normalize data for visualization (scale to 8-bit grayscale)
-        normalized_data = ((data - np.min(data)) / (np.max(data) - np.min(data)) * 255).astype(np.uint8)
+        # Normalize data for visualization
+        data_min = np.min(data)
+        data_max = np.max(data)
+        if data_max == data_min:
+            normalized_data = np.zeros_like(data, dtype=np.uint8)
+        else:
+            normalized_data = ((data - data_min) / (data_max - data_min) * 255).astype(np.uint8)
 
-        for i in range(normalized_data.shape[0]):  # Loop over ranges
-            image = Image.fromarray(normalized_data[i].reshape(1, -1))  # Create an image for each range
+        for i in range(normalized_data.shape[0]):
+            image = Image.fromarray(normalized_data[i].reshape(1, -1))
             buffered = io.BytesIO()
             image.save(buffered, format="PNG")
             encoded_image = base64.b64encode(buffered.getvalue()).decode('utf-8')
             image_base64_list.append(f"data:image/png;base64,{encoded_image}")
 
+        logger.info(f"Generated {len(image_base64_list)} images.")
         return image_base64_list
     except Exception as e:
         logger.error(f"Error generating Base64 images: {e}")
