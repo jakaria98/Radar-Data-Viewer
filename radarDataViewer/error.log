@@ -1,0 +1,66 @@
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.

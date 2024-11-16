@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#w=7qelmxxt%n(+e+%@+-k8p&q#m8w9ma4_v5a$%5blx#clthv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['']
 
 
 # Application definition
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'radar_viewer',
+    'radarViewer',
 ]
 
 MIDDLEWARE = [
