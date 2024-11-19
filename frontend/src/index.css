@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-glass {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bg-headerFooter {
+	background: rgba(255, 255, 255, 0.055);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(255, 255, 255, 0.025);
+}
+
+.glass-button {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	padding: 8px 16px;
+	color: #fff;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 4px;
+	transition: all 0.2s ease-in-out;
+}
+
+.glass-button:hover {
+	background: rgba(255, 255, 255, 0.2);
+	color: #000;
+}
+
+.glass-icon-button {
+	width: 48px;
+	height: 48px;
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	color: #fff;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.2s ease-in-out;
+}
+
+.glass-icon-button:hover {
+	background: rgba(255, 255, 255, 0.2);
+	color: #000;
+}
+
+.shadow-glass {
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2),
+		0px 1px 3px rgba(0, 0, 0, 0.05);
+}
