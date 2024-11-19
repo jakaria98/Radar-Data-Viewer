@@ -1,12 +1,7 @@
-import "./App.css";
+import DataViewer from "./Pages/DataViewer";
 
 function App() {
-	return (
-		<>
-			<p>Radar Data Viewer</p>
-			<h1>Under Construction!</h1>
-		</>
-	);
+	return <DataViewer />;
 }
 
 export default App;
