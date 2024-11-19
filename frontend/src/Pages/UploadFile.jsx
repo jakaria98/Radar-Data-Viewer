@@ -47,11 +47,20 @@ const UploadFile = () => {
 						Upload File
 					</h2>
 					<div className="flex flex-col items-center">
-						<input
-							type="file"
-							onChange={handleFileChange}
-							className="mb-4 text-gray-200"
-						/>
+						<div className="relative mb-4">
+							<input
+								type="file"
+								onChange={handleFileChange}
+								className="hidden"
+								id="fileInput"
+							/>
+							<label
+								htmlFor="fileInput"
+								className="glass-button cursor-pointer"
+							>
+								{file ? file.name : "Choose File"}
+							</label>
+						</div>
 						<button
 							className="glass-button"
 							onClick={handleUpload}

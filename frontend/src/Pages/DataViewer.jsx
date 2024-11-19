@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import RadarAnimation from "../Components/RadarAnimation";
 
 const DataViewer = () => {
+	const navigate = useNavigate();
 	return (
 		<div className="min-h-screen flex flex-col bg-black text-white relative overflow-hidden">
 			<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
@@ -21,8 +23,18 @@ const DataViewer = () => {
 					}}
 				>
 					<div className="text-right mb-4 flex justify-end gap-2">
-						<button className="glass-button">Load</button>
-						<button className="glass-button">Upload</button>
+						<button
+							className="glass-button"
+							onClick={() => navigate("/load")}
+						>
+							Load
+						</button>
+						<button
+							className="glass-button"
+							onClick={() => navigate("/upload")}
+						>
+							Upload
+						</button>
 					</div>
 
 					<div
