@@ -16,13 +16,32 @@ const UploadFile = () => {
 			setMessage("Please select a file to upload.");
 			return;
 		}
-
+	
 		const formData = new FormData();
-		formData.append("file", file);
-
+		formData.append("file", file); // Ensure the key matches "file" in your Django view
+	
 		try {
-			// write the api calling code here -> eialid
+			console.log("Sending.......... ........ ........")
+			const response = await fetch("http://127.0.0.1:9000/api/upload/", {
+				method: "POST",
+				body: formData,
+				headers: {
+					// 'Content-Type' is omitted because FormData automatically sets it.
+				},
+			});
+	
+			if (response.ok) {
+				console.log("Got Response!!")
+				const data = await response.json();
+				setMessage("File uploaded successfully!");
+				console.log("Response:", data); // Log backend response for debugging
+			} else {
+				console.log("Errrrrorrrrrrr.....")
+				const errorData = await response.json();
+				setMessage(`Failed to upload file: ${errorData.message || "Unknown error"}`);
+			}
 		} catch (error) {
+			console.error("Error uploading file:", error);
 			setMessage("Error uploading file. Please try again.");
 		}
 	};
