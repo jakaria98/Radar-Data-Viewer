@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import RadarAnimation from "../Components/RadarAnimation";
@@ -18,11 +18,11 @@ const UploadFile = () => {
 		}
 	
 		const formData = new FormData();
-		formData.append("file", file); // Ensure the key matches "file" in your Django view
+		formData.append('file',file); // Ensure the key matches "file" in your Django view
 	
 		try {
 			console.log("Sending.......... ........ ........")
-			const response = await fetch("http://127.0.0.1:9000/api/upload/", {
+			const response = await fetch("http://127.0.0.1:8000/api/upload/", {
 				method: "POST",
 				body: formData,
 				headers: {
@@ -41,7 +41,7 @@ const UploadFile = () => {
 				setMessage(`Failed to upload file: ${errorData.message || "Unknown error"}`);
 			}
 		} catch (error) {
-			console.error("Error uploading file:", error);
+			console.log("Error uploading file:", error);
 			setMessage("Error uploading file. Please try again.");
 		}
 	};
