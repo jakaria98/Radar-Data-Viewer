@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import RadarAnimation from "../Components/RadarAnimation";
@@ -6,6 +7,7 @@ import RadarAnimation from "../Components/RadarAnimation";
 const UploadFile = () => {
 	const [file, setFile] = useState(null);
 	const [message, setMessage] = useState("");
+	const navigate = useNavigate();
 
 	const handleFileChange = (e) => {
 		setFile(e.target.files[0]);
@@ -18,15 +20,14 @@ const UploadFile = () => {
 		}
 	
 		const formData = new FormData();
-		formData.append('file',file); // Ensure the key matches "file" in your Django view
+		formData.append("file", file); // Ensure the key matches "file" in your Django view
 	
 		try {
 			console.log("Sending.......... ........ ........")
-			const response = await fetch("http://127.0.0.1:8000/api/upload/", {
+			const response = await fetch("http://127.0.0.1:9000/api/upload/", {
 				method: "POST",
 				body: formData,
 				headers: {
-					// 'Content-Type' is omitted because FormData automatically sets it.
 				},
 			});
 	
@@ -34,6 +35,7 @@ const UploadFile = () => {
 				console.log("Got Response!!")
 				const data = await response.json();
 				setMessage("File uploaded successfully!");
+				navigate("/", { state: { data } }); // Pass response data
 				console.log("Response:", data); // Log backend response for debugging
 			} else {
 				console.log("Errrrrorrrrrrr.....")
@@ -41,7 +43,7 @@ const UploadFile = () => {
 				setMessage(`Failed to upload file: ${errorData.message || "Unknown error"}`);
 			}
 		} catch (error) {
-			console.log("Error uploading file:", error);
+			console.error("Error uploading file:", error);
 			setMessage("Error uploading file. Please try again.");
 		}
 	};
