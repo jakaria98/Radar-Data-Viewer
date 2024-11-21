@@ -33,7 +33,7 @@ const DataViewer = () => {
 	}, [images]);
 	return (
 		<>
-			{!radarData ?
+			{radarData ?
 				<div className="min-h-screen flex flex-col bg-black text-white relative overflow-hidden">
 					<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
 						<RadarAnimation />
