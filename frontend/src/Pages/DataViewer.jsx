@@ -11,7 +11,6 @@ const DataViewer = () => {
 	const [metadata, setMetadata] = useState({});
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const radarData = location.state && location.state.data
-	console.log(radarData);
 
 	// Get data from location state
 	useEffect(() => {
@@ -33,7 +32,7 @@ const DataViewer = () => {
 	}, [images]);
 	return (
 		<>
-			{radarData ?
+			{!radarData ?
 				<div className="min-h-screen flex flex-col bg-black text-white relative overflow-hidden">
 					<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
 						<RadarAnimation />
@@ -142,8 +141,13 @@ const DataViewer = () => {
 												key={index}
 												src={image}
 												alt={`Radar ${index}`}
-												className="max-h-full max-w-full mb-2"
-											/>
+												style={{ 
+													width: '800px', 
+													height: '900px',  // To maintain aspect ratio
+													objectFit: 'contain',  // Ensures the image scales properly without distortion
+													maxWidth: '100%', 
+													maxHeight: '2000px'  // Keeps the image within the viewport height
+												}} 											/>
 										))}
 									</div>
 
