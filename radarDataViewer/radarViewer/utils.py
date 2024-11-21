@@ -183,6 +183,7 @@ def process_sort_file(file_path):
 
             # Generate images
             images = generate_images_base64(np.abs(radar_data))
+            images = decode_images_base64_to_response(images)
 
             logger.info(f"Processed file {file_path}: {num_ranges} ranges, {num_antennas} antennas, {num_samples} samples.")
 
@@ -261,3 +262,34 @@ def generate_images_base64(data):
     except Exception as e:
         logger.error(f"Error generating Base64 images: {e}")
         return None
+
+
+def decode_images_base64_to_response(base64_images):
+    if not base64_images or not isinstance(base64_images, list):
+        raise ValueError("The input must be a list of Base64-encoded image strings.")
+
+    decoded_images = []
+    for idx, base64_image in enumerate(base64_images):
+        try:
+            # Remove Base64 header if it exists
+            if base64_image.startswith("data:image"):
+                base64_image = base64_image.split(",")[1]
+
+            # Decode the Base64 string
+            image_data = base64.b64decode(base64_image)
+
+            # Convert to binary data
+            image = Image.open(io.BytesIO(image_data))
+            buffered = io.BytesIO()
+            image.save(buffered, format="PNG")
+            buffered.seek(0)
+
+            # Append to the response list
+            decoded_images.append({
+                "filename": f"image_{idx + 1}.png",
+                "data": base64.b64encode(buffered.getvalue()).decode('utf-8')  # Re-encode for frontend
+            })
+        except Exception as e:
+            logger.error(f"Failed to decode image {idx + 1}: {e}")
+
+    return decoded_images
