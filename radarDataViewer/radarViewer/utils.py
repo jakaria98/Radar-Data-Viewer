@@ -1,135 +1,3 @@
-"""
-import numpy as np
-from PIL import Image
-import io
-import base64
-import logging
-from django.http import JsonResponse
-
-logger = logging.getLogger(__name__)
-
-def create_error_response(message, status_code=400):
-    return {"error": message, "status": status_code}
-
-def process_sort_file(file_path):
-    try:
-        with open(file_path, 'rb') as f:
-            # Read the header
-            header_lines = []
-            while True:
-                pos = f.tell()
-                line = f.readline()
-                if not line:
-                    break  # End of file
-                try:
-                    decoded_line = line.decode('utf-8', errors='ignore').strip()
-                    header_lines.append(decoded_line)
-                    if 'DATA_START' in decoded_line or 'END_HEADER' in decoded_line:  # Example marker
-                        break
-                except UnicodeDecodeError:
-                    # Likely binary data; rewind to the start of binary data
-                    f.seek(pos)
-                    break
-
-            header_size = f.tell()
-            binary_data = f.read()
-
-            # Parse the header metadata
-            metadata = parse_sort_header("\n".join(header_lines))
-
-            # Validate required metadata
-            if 'num_samples' not in metadata or 'num_ranges' not in metadata or 'num_antennas' not in metadata:
-                raise ValueError("Missing critical metadata fields.")
-
-            num_samples = metadata['num_samples']
-            num_ranges = metadata['num_ranges']
-            num_antennas = metadata['num_antennas']
-
-            # Process binary data
-            data_point_size = 4  # Each value is 4 bytes (float32: Real + Imaginary)
-            total_data_points = num_ranges * num_antennas * num_samples * 2  # Real + Imaginary components
-            binary_data = np.frombuffer(binary_data[:total_data_points * data_point_size], dtype=np.float32)
-
-            # Reshape into a 4D array: (range, antenna, sample, real/imaginary)
-            real_imag_data = binary_data.reshape((num_ranges, num_antennas, num_samples, 2))
-
-            # Convert to complex numbers
-            radar_data = real_imag_data[..., 0] + 1j * real_imag_data[..., 1]
-
-            # Generate images
-            images = generate_images_base64(np.abs(radar_data))
-
-            # Update metadata with inferred values
-            metadata['num_ranges'] = num_ranges
-            metadata['num_samples'] = num_samples
-
-            logger.info(f"Processed file {file_path}: {num_ranges} ranges, {num_antennas} antennas, {num_samples} samples.")
-
-            return {
-                'radar_data': radar_data,
-                'metadata': metadata,
-                'images': images,
-            }
-    except FileNotFoundError:
-        logger.error(f"File not found: {file_path}")
-        return create_error_response("File not found", status_code=404)
-    except Exception as e:
-        logger.error(f"Error processing .SORT file: {e}")
-        return create_error_response(f"An error occurred: {e}")
-
-def parse_sort_header(header):
-    metadata = {}
-    try:
-        for line in header.splitlines():
-            line = line.strip()
-            if 'NRRANGES' in line:
-                metadata['num_ranges'] = int(line.split(':')[1].strip())
-            elif 'SAMPLES' in line:
-                metadata['num_samples'] = int(line.split(':')[1].strip())
-            elif 'ANTENNAS' in line:
-                metadata['num_antennas'] = int(line.split(':')[1].strip())
-            elif 'FREQUENCY' in line:
-                metadata['frequency'] = float(line.split(':')[1].strip())
-            elif 'TAU' in line:
-                metadata['sampling_frequency'] = float(line.split(':')[1].strip())
-            elif 'TRUENORTH' in line:
-                metadata['trueNorth'] = float(line.split(':')[1].strip())
-            elif 'RANGERES' in line:
-                metadata['rangeRes'] = float(line.split(':')[1].strip())
-            elif 'RANGE' in line and 'NRRANGES' not in line:
-                metadata['range'] = line.split(':')[1].strip()
-            elif 'DATE' in line or 'TIME' in line:
-                metadata['timestamp'] = line.strip()
-    except Exception as e:
-        logger.error(f"Error parsing header: {e}")
-    return metadata
-
-def generate_images_base64(data):
-    image_base64_list = []
-    try:
-        # Normalize data for visualization
-        data_min = np.min(data)
-        data_max = np.max(data)
-        if data_max == data_min:
-            normalized_data = np.zeros_like(data, dtype=np.uint8)
-        else:
-            normalized_data = ((data - data_min) / (data_max - data_min) * 255).astype(np.uint8)
-
-        for i in range(normalized_data.shape[0]):
-            image = Image.fromarray(normalized_data[i])
-            buffered = io.BytesIO()
-            image.save(buffered, format="PNG")
-            encoded_image = base64.b64encode(buffered.getvalue()).decode('utf-8')
-            image_base64_list.append(f"data:image/png;base64,{encoded_image}")
-
-        logger.info(f"Generated {len(image_base64_list)} images.")
-        return image_base64_list
-    except Exception as e:
-        logger.error(f"Error generating Base64 images: {e}")
-        return None
-
-"""
-
 import numpy as np
 from PIL import Image
 import io
@@ -137,6 +5,9 @@ import base64
 import logging
 import re
 from django.http import JsonResponse
+from scipy.signal.windows import hamming
+from scipy.ndimage import zoom
+
 # Set up logger
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -181,22 +52,35 @@ def process_sort_file(file_path):
             real_imag_data = binary_data.reshape((num_ranges, num_antennas, num_samples, 2))
             radar_data = real_imag_data[..., 0] + 1j * real_imag_data[..., 1]
 
+            # Apply signal processing (e.g., Hamming window)
+            #radar_data = apply_hamming_window(radar_data)
+
+            # Polar to Cartesian Transformation (if polar values are provided)
+            if 'rangeRes' in metadata and num_ranges > 0:
+                ranges = np.linspace(0, num_ranges * metadata['rangeRes'], num_ranges)
+                angles = np.linspace(0, 2 * np.pi, num_samples)
+                x, y = polar_to_cartesian(ranges, angles)
+                logger.debug(f"Transformed to Cartesian coordinates: x.shape={x.shape}, y.shape={y.shape}")
+                cartesian_data = {"x": x, "y": y}
+            else:
+                logger.warning("Polar transformation skipped: Missing range or angle values.")
+                cartesian_data = None
+
             # Generate images
             images = generate_images_base64(np.abs(radar_data))
-            images = decode_images_base64_to_response(images)
 
             logger.info(f"Processed file {file_path}: {num_ranges} ranges, {num_antennas} antennas, {num_samples} samples.")
 
-            return radar_data, metadata, images
+            return radar_data, metadata, images, cartesian_data
     except FileNotFoundError:
         logger.error(f"File not found: {file_path}")
-        return None, None, None
+        return None, None, None, None
     except ValueError as e:
         logger.error(f"Error processing .SORT file: {e}")
-        return None, None, None
+        return None, None, None, None
     except Exception as e:
         logger.error(f"Unexpected error during file processing: {e}")
-        return None, None, None
+        return None, None, None, None
 
 def parse_sort_header(header):
     metadata = {}
@@ -232,6 +116,7 @@ def parse_sort_header(header):
     logger.info(f"Extracted metadata: {metadata}")
     return metadata
 
+
 def dms_to_decimal(dms_str):
     try:
         parts = list(map(int, dms_str.split('-')))
@@ -241,21 +126,53 @@ def dms_to_decimal(dms_str):
         logger.error(f"Error converting DMS to decimal: {e}")
         raise
 
-def generate_images_base64(data):
+
+def apply_hamming_window(data):
+    try:
+        window = hamming(data.shape[-1])  # Apply along the samples axis
+        return data * window[None, None, :]  # Broadcast across antennas and ranges
+    except Exception as e:
+        logger.error(f"Error applying Hamming window: {e}")
+        return data
+
+
+def resample_slice(slice, output_shape=(256, 256)):
+    try:
+        zoom_factors = (
+            output_shape[0] / slice.shape[0],
+            output_shape[1] / slice.shape[1],
+        )
+        return zoom(slice, zoom_factors)
+    except Exception as e:
+        logger.error(f"Error resampling slice: {e}")
+        return slice
+
+
+def generate_images_base64(data, output_shape=(256, 256)):
     image_base64_list = []
     try:
         if data.size == 0:
             logger.error("Data is empty. Cannot generate images.")
             return None
+
         data_min = np.min(data)
         data_max = np.max(data)
-        normalized_data = ((data - data_min) / (data_max - data_min) * 255).astype(np.uint8)
+        if data_max == data_min:
+            logger.warning("Data values are constant; generated images may be uninformative.")
+            normalized_data = np.zeros_like(data, dtype=np.uint8)
+        else:
+            normalized_data = ((data - data_min) / (data_max - data_min) * 255).astype(np.uint8)
+
         for i in range(normalized_data.shape[0]):
-            image = Image.fromarray(normalized_data[i])
-            buffered = io.BytesIO()
-            image.save(buffered, format="PNG")
-            encoded_image = base64.b64encode(buffered.getvalue()).decode('utf-8')
-            image_base64_list.append(f"data:image/png;base64,{encoded_image}")
+            try:
+                resampled_data = resample_slice(normalized_data[i], output_shape)
+                image = Image.fromarray(resampled_data)
+                buffered = io.BytesIO()
+                image.save(buffered, format="PNG")
+                encoded_image = base64.b64encode(buffered.getvalue()).decode('utf-8')
+                image_base64_list.append(f"data:image/png;base64,{encoded_image}")
+            except Exception as e:
+                logger.error(f"Failed to generate image for slice {i}: {e}")
 
         logger.info(f"Generated {len(image_base64_list)} images.")
         return image_base64_list
@@ -264,32 +181,12 @@ def generate_images_base64(data):
         return None
 
 
-def decode_images_base64_to_response(base64_images):
-    if not base64_images or not isinstance(base64_images, list):
-        raise ValueError("The input must be a list of Base64-encoded image strings.")
+def polar_to_cartesian(ranges, angles):
+    try:
+        x = ranges[:, None] * np.cos(angles[None, :])
+        y = ranges[:, None] * np.sin(angles[None, :])
+        return x, y
+    except Exception as e:
+        logger.error(f"Error converting polar to Cartesian: {e}")
+        raise
 
-    decoded_images = []
-    for idx, base64_image in enumerate(base64_images):
-        try:
-            # Remove Base64 header if it exists
-            if base64_image.startswith("data:image"):
-                base64_image = base64_image.split(",")[1]
-
-            # Decode the Base64 string
-            image_data = base64.b64decode(base64_image)
-
-            # Convert to binary data
-            image = Image.open(io.BytesIO(image_data))
-            buffered = io.BytesIO()
-            image.save(buffered, format="PNG")
-            buffered.seek(0)
-
-            # Append to the response list
-            decoded_images.append({
-                "filename": f"image_{idx + 1}.png",
-                "data": base64.b64encode(buffered.getvalue()).decode('utf-8')  # Re-encode for frontend
-            })
-        except Exception as e:
-            logger.error(f"Failed to decode image {idx + 1}: {e}")
-
-    return decoded_images

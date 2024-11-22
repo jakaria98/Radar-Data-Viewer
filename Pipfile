@@ -9,5 +9,6 @@ djangorestframework = "*"
 pillow = "*"
 numpy = "*"
 django-cors-headers = "*"
+scipy = "*"
 
 [dev-packages]
