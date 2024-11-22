@@ -89,15 +89,12 @@ const DataViewer = () => {
                     {/* Centered Main Section */}
                     <main className="flex-grow flex justify-center items-center">
                         {/* Image Container */}
-                        <div
-                            className="flex flex-col justify-center items-center w-2/3 bg-glass border-2 border-green-400 shadow-glass"
-                            style={{ height: '85vh' }} // Adjusted height
-                        >
+                        <div className="flex flex-col justify-center items-center w-2/3 bg-glass border-2 border-green-400 shadow-glass image-container">
                             {images.length > 0 ? (
                                 <img
                                     src={images[currentIndex]}
                                     alt={`Radar ${currentIndex}`}
-                                    className="max-h-full max-w-full rounded-lg"
+                                    className="radar-image rounded-lg"
                                 />
                             ) : (
                                 <p className="text-gray-200">No images available</p>
@@ -142,10 +139,7 @@ const DataViewer = () => {
                         </div>
 
                         {/* Metadata Container */}
-                        <div
-                            className="flex flex-col justify-center items-center w-1/3 bg-glass border-2 border-green-400 shadow-glass p-6"
-                            style={{ height: '85vh' }} // Adjusted height
-                        >
+                        <div className="flex flex-col justify-center items-center w-1/3 bg-glass border-2 border-green-400 shadow-glass p-6 metadata-container">
                             <h2 className="text-xl font-semibold text-green-400 mb-4">
                                 Metadata Information
                             </h2>
