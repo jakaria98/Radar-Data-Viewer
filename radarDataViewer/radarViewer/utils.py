@@ -179,14 +179,3 @@ def generate_images_base64(data, output_shape=(256, 256)):
     except Exception as e:
         logger.error(f"Error generating Base64 images: {e}")
         return None
-
-
-def polar_to_cartesian(ranges, angles):
-    try:
-        x = ranges[:, None] * np.cos(angles[None, :])
-        y = ranges[:, None] * np.sin(angles[None, :])
-        return x, y
-    except Exception as e:
-        logger.error(f"Error converting polar to Cartesian: {e}")
-        raise
-
