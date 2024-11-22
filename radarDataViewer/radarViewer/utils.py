@@ -53,7 +53,7 @@ def process_sort_file(file_path):
             radar_data = real_imag_data[..., 0] + 1j * real_imag_data[..., 1]
 
             # Apply signal processing (e.g., Hamming window)
-            #radar_data = apply_hamming_window(radar_data)
+            radar_data = apply_hamming_window(radar_data)
 
             # Polar to Cartesian Transformation (if polar values are provided)
             if 'rangeRes' in metadata and num_ranges > 0:
@@ -81,6 +81,8 @@ def process_sort_file(file_path):
     except Exception as e:
         logger.error(f"Unexpected error during file processing: {e}")
         return None, None, None, None
+
+
 
 def parse_sort_header(header):
     metadata = {}
@@ -179,3 +181,13 @@ def generate_images_base64(data, output_shape=(256, 256)):
     except Exception as e:
         logger.error(f"Error generating Base64 images: {e}")
         return None
+
+
+def polar_to_cartesian(ranges, angles):
+    try:
+        x = ranges[:, None] * np.cos(angles[None, :])
+        y = ranges[:, None] * np.sin(angles[None, :])
+        return x, y
+    except Exception as e:
+        logger.error(f"Error converting polar to Cartesian: {e}")
+        raise
