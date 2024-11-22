@@ -10,8 +10,8 @@ const DataViewer = () => {
     const [images, setImages] = useState([]);
     const [metadata, setMetadata] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(true); // State to control play/pause
     const radarData = location.state && location.state.data;
-   // console.log(radarData);
 
     // Get data from location state
     useEffect(() => {
@@ -24,13 +24,36 @@ const DataViewer = () => {
 
     // Auto-slide through images
     useEffect(() => {
-        if (images.length > 0) {
-            const interval = setInterval(() => {
+        let interval;
+        if (images.length > 0 && isPlaying) {
+            interval = setInterval(() => {
                 setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
             }, 3000); // Change image every 3 seconds
-            return () => clearInterval(interval);
         }
-    }, [images]);
+        return () => clearInterval(interval);
+    }, [images, isPlaying]);
+
+    // Navigate to previous and next images
+    const handlePrevImage = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    };
+
+    const handleNextImage = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    };
+
+    const handleFirstImage = () => {
+        setCurrentIndex(0);
+    };
+
+    const handleLastImage = () => {
+        setCurrentIndex(images.length - 1);
+    };
+
+    const togglePlayPause = () => {
+        setIsPlaying(!isPlaying);
+    };
+
     return (
         <>
             {!radarData ? (
@@ -42,17 +65,11 @@ const DataViewer = () => {
                     <Header />
 
                     <main className="flex-grow flex flex-col justify-center items-center py-8 relative z-10">
-                        <div
-                            className="w-[700px] bg-glass border-2 border-green-400 rounded-lg shadow-glass p-4"
-                            style={{
-                                backdropFilter: 'blur(10px)',
-                                background: 'rgba(255, 255, 255, 0.1)',
-                            }}
-                        >
+                        <div className="w-[700px] bg-glass border-2 border-green-400 rounded-lg shadow-glass p-4">
+                            <p className="text-gray-200 text-lg">
+                                No data available. Please upload a file first.
+                            </p>
                             <div className="text-right mb-4 flex justify-end gap-2">
-                                <button className="glass-button" onClick={() => navigate('/load')}>
-                                    Load
-                                </button>
                                 <button
                                     className="glass-button"
                                     onClick={() => navigate('/upload')}
@@ -60,114 +77,80 @@ const DataViewer = () => {
                                     Upload
                                 </button>
                             </div>
-
-                            <div
-                                className="bg-glass border-2 border-green-400 rounded-lg w-full h-[400px] flex justify-center items-center"
-                                style={{
-                                    backdropFilter: 'blur(10px)',
-                                    background: 'rgba(255, 255, 255, 0.1)',
-                                }}
-                            >
-                                <p className="text-gray-200 text-lg">Radar Image Placeholder</p>
-                            </div>
-
-                            <div className="flex justify-center items-center mt-4 space-x-4">
-                                <button className="glass-icon-button">◀️◀️</button>
-                                <button className="glass-icon-button">◀️</button>
-                                <button className="glass-icon-button">| |</button>
-                                <button className="glass-icon-button">▶️</button>
-                                <button className="glass-icon-button">▶️▶️</button>
-                            </div>
-                        </div>
-
-                        <div
-                            className="w-[700px] bg-glass border-2 border-green-400 rounded-lg shadow-glass p-4 mt-8"
-                            style={{
-                                backdropFilter: 'blur(10px)',
-                                background: 'rgba(255, 255, 255, 0.1)',
-                            }}
-                        >
-                            <h2 className="text-xl font-semibold text-green-400 mb-2">
-                                Information
-                            </h2>
-                            <p className="text-gray-200">
-                                This is a placeholder for the radar image's metadata or relevant
-                                details. You can include information like date, time, radar
-                                frequency, or any additional properties related to the image being
-                                displayed.
-                            </p>
                         </div>
                     </main>
 
                     <Footer />
                 </div>
             ) : (
-                <div className="min-h-screen flex flex-col bg-black text-white relative overflow-hidden">
-                    <div className="absolute inset-0 pointer-events-none flex justify-center items-center">
-                        <RadarAnimation />
-                    </div>
-
+                <div className="min-h-screen bg-black text-white flex flex-col">
                     <Header />
 
-                    <main className="flex-grow flex flex-col justify-center items-center py-8 relative z-10">
-                        {/* Render content based on condition */}
-                        {radarData ? (
-                            <>
-                                <div
-                                    className="w-[700px] bg-glass border-2 border-green-400 rounded-lg shadow-glass p-4"
-                                    style={{
-                                        backdropFilter: 'blur(10px)',
-                                        background: 'rgba(255, 255, 255, 0.1)',
-                                    }}
+                    {/* Centered Main Section */}
+                    <main className="flex-grow flex justify-center items-center">
+                        {/* Image Container */}
+                        <div
+                            className="flex flex-col justify-center items-center w-2/3 bg-glass border-2 border-green-400 shadow-glass"
+                            style={{ height: '85vh' }} // Adjusted height
+                        >
+                            {images.length > 0 ? (
+                                <img
+                                    src={images[currentIndex]}
+                                    alt={`Radar ${currentIndex}`}
+                                    className="max-h-full max-w-full rounded-lg"
+                                />
+                            ) : (
+                                <p className="text-gray-200">No images available</p>
+                            )}
+                            <div className="flex justify-center items-center mt-4 space-x-4">
+                                <button
+                                    className="glass-icon-button"
+                                    onClick={handleFirstImage}
+                                    title="First Image"
                                 >
-                                    <div
-                                        className="bg-glass border-2 border-green-400 rounded-lg w-full h-[400px] flex justify-center items-center"
-                                        style={{
-                                            backdropFilter: 'blur(10px)',
-                                            background: 'rgba(255, 255, 255, 0.1)',
-                                        }}
-                                    >
-                                        {/* Display images */}
-                                        {radarData.images.map((image, index) => (
-                                            <img
-                                                key={index}
-                                                src={image}
-                                                alt={`Radar ${index}`}
-                                                className="max-h-full max-w-full mb-2"
-                                            />
-                                        ))}
-                                    </div>
-
-                                    <div className="flex justify-center items-center mt-4 space-x-4">
-                                        <button className="glass-icon-button">◀️◀️</button>
-                                        <button className="glass-icon-button">◀️</button>
-                                        <button className="glass-icon-button">| |</button>
-                                        <button className="glass-icon-button">▶️</button>
-                                        <button className="glass-icon-button">▶️▶️</button>
-                                    </div>
-                                </div>
-
-                                <div
-                                    className="w-[700px] bg-glass border-2 border-green-400 rounded-lg shadow-glass p-4 mt-8"
-                                    style={{
-                                        backdropFilter: 'blur(10px)',
-                                        background: 'rgba(255, 255, 255, 0.1)',
-                                    }}
+                                    ⏮️
+                                </button>
+                                <button
+                                    className="glass-icon-button"
+                                    onClick={handlePrevImage}
+                                    title="Previous Image"
                                 >
-                                    <h2 className="text-xl font-semibold text-green-400 mb-2">
-                                        Metadata Information
-                                    </h2>
-                                    {/* Display metadata */}
-                                    <pre className="text-gray-200">
-                                        {JSON.stringify(radarData.metadata, null, 2)}
-                                    </pre>
-                                </div>
-                            </>
-                        ) : (
-                            <p className="text-gray-200 text-lg">
-                                No data available. Please upload a file first.
-                            </p>
-                        )}
+                                    ◀️
+                                </button>
+                                <button
+                                    className="glass-icon-button"
+                                    onClick={togglePlayPause}
+                                    title={isPlaying ? 'Pause Slideshow' : 'Play Slideshow'}
+                                >
+                                    {isPlaying ? '⏸️' : '▶️'}
+                                </button>
+                                <button
+                                    className="glass-icon-button"
+                                    onClick={handleNextImage}
+                                    title="Next Image"
+                                >
+                                    ▶️
+                                </button>
+                                <button
+                                    className="glass-icon-button"
+                                    onClick={handleLastImage}
+                                    title="Last Image"
+                                >
+                                    ⏭️
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Metadata Container */}
+                        <div
+                            className="flex flex-col justify-center items-center w-1/3 bg-glass border-2 border-green-400 shadow-glass p-6"
+                            style={{ height: '85vh' }} // Adjusted height
+                        >
+                            <h2 className="text-xl font-semibold text-green-400 mb-4">
+                                Metadata Information
+                            </h2>
+                            <pre className="text-gray-200">{JSON.stringify(metadata, null, 2)}</pre>
+                        </div>
                     </main>
 
                     <Footer />

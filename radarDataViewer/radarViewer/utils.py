@@ -71,7 +71,7 @@ def process_sort_file(file_path):
 
             logger.info(f"Processed file {file_path}: {num_ranges} ranges, {num_antennas} antennas, {num_samples} samples.")
 
-            return radar_data, metadata, images, cartesian_data
+            return metadata, images, cartesian_data
     except FileNotFoundError:
         logger.error(f"File not found: {file_path}")
         return None, None, None, None
