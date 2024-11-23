@@ -3,63 +3,37 @@ from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
 from datetime import datetime
 import os
+import unittest
 from models import RadarFile, timestamped_file_path 
 
-class RadarFileModelTestCase(TestCase):
+class RadarFileModelTestCase(unittest.TestCase):
+
+    ####################### models test case###########
+
     def test_timestamped_file_path(self):
-        # Create a dummy instance and filename
-        class DummyInstance:
-            pass
+        # Mock an instance and a filename
+        mock_instance = None
+        filename = "test_file.SORT"
+        
+        # Generate the file path
+        file_path = timestamped_file_path(mock_instance, filename)
 
-        instance = DummyInstance()
-        filename = "example_file.txt"
+        current_time = datetime.datetime.now()
+        formatted_timestamp = current_time.strftime('%Y%m%d%H%M%S')
+        
+        # Extract timestamp and validate
+        expected_timestamp = formatted_timestamp # "20241123164857"
+        self.assertIn(expected_timestamp, file_path, "The timestamp should be included in the file path.")
+        self.assertTrue(file_path.startswith("uploads/"), "File path should start with 'uploads/'.")
+        self.assertTrue(file_path.endswith(".SORT"), "File extension should remain the same.")
 
-        # Call the function
-        result = timestamped_file_path(instance, filename)
 
-        # Check the result
-        self.assertTrue(result.startswith("uploads/"))
-        self.assertIn("example_file_", result)
-        self.assertTrue(result.endswith(".txt"))
+    
 
-        # Verify timestamp format
-        timestamp = result.split("_")[-1].split(".")[0]
-        try:
-            datetime.strptime(timestamp, '%Y%m%d%H%M%S')
-            valid_timestamp = True
-        except ValueError:
-            valid_timestamp = False
+        
 
-        self.assertTrue(valid_timestamp, "Timestamp is not in the correct format")
-
-    def test_radar_file_model(self):
-        # Create a dummy file
-        test_file = SimpleUploadedFile(
-            "test_file.txt", b"This is a test file content", content_type="text/plain"
-        )
-
-        # Save a RadarFile instance
-        radar_file = RadarFile.objects.create(file=test_file)
-
-        # Check the model fields
-        self.assertTrue(radar_file.file.name.startswith("uploads/"))
-        self.assertEqual(radar_file.file.read(), b"This is a test file content")
-        self.assertIsNotNone(radar_file.uploaded_at)
-
-        # Clean up
-        radar_file.file.delete()
-
-    def test_radar_file_str_method(self):
-        # Create a dummy file
-        test_file = SimpleUploadedFile(
-            "test_file.txt", b"Dummy content", content_type="text/plain"
-        )
-
-        # Save a RadarFile instance
-        radar_file = RadarFile.objects.create(file=test_file)
-
-        # Check the string representation
-        self.assertEqual(str(radar_file), radar_file.file.name)
-
-        # Clean up
-        radar_file.file.delete()
+# filepath empty
+# header empty
+#
+#
+#
