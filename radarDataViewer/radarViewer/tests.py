@@ -4,7 +4,8 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from datetime import datetime
 import os
 import unittest
-from models import RadarFile, timestamped_file_path 
+from .models import RadarFile, timestamped_file_path
+from .utils import * 
 
 class RadarFileModelTestCase(unittest.TestCase):
 
@@ -27,7 +28,30 @@ class RadarFileModelTestCase(unittest.TestCase):
         self.assertTrue(file_path.startswith("uploads/"), "File path should start with 'uploads/'.")
         self.assertTrue(file_path.endswith(".SORT"), "File extension should remain the same.")
 
+class TestUtils(unittest.TestCase):
 
+    def test_dms_to_decimal_valid_input(self):
+        # Test with a valid DMS string
+        dms_str = "123-45-30"  # 123°45'30"
+        expected_output = 123 + 45 / 60 + 30 / 3600
+        self.assertAlmostEqual(dms_to_decimal(dms_str), expected_output, places=6)
+
+    def test_dms_to_decimal_edge_case(self):
+        # Test with edge case (zero degrees, minutes, and seconds)
+        dms_str = "0-0-0"
+        self.assertEqual(dms_to_decimal(dms_str), 0)
+
+    def test_dms_to_decimal_invalid_input(self):
+        # Test with invalid DMS string
+        dms_str = "123-45"
+        with self.assertRaises(ValueError):
+            dms_to_decimal(dms_str)
+
+    def test_dms_to_decimal_non_numeric_input(self):
+        # Test with non-numeric input
+        dms_str = "abc-def-ghi"
+        with self.assertRaises(ValueError):
+            dms_to_decimal(dms_str)
     
 
         
