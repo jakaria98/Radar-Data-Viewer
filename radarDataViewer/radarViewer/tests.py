@@ -85,6 +85,67 @@ class TestUtils(unittest.TestCase):
         with self.assertRaises(ValueError):
             dms_to_decimal(dms_str)
     
+    ##### Base 64 Testing #####
+
+    def test_generate_images_base64_valid_input(self):
+        # Create a valid 3D numpy array with random values
+        data = np.random.rand(5, 64, 64)  # 5 images, each 64x64
+        data *= 255  # Scale to 0-255
+        data = data.astype(np.float32)
+        
+        # Call the function
+        result = generate_images_base64(data)
+        
+        # Check the result
+        self.assertIsNotNone(result)
+        self.assertEqual(len(result), 5)  # Ensure 5 images are generated
+        for image_base64 in result:
+            self.assertTrue(image_base64.startswith("data:image/png;base64,"))
+
+    def test_generate_images_base64_empty_input(self):
+        # Create an empty numpy array
+        data = np.array([])
+        
+        # Call the function
+        result = generate_images_base64(data)
+        
+        # Check the result
+        self.assertIsNone(result)
+
+    def test_generate_images_base64_single_image(self):
+        # Create a 3D numpy array with a single "image" of shape 64x64
+        data = np.random.rand(1, 64, 64).astype(np.float32) * 255
+        
+        # Call the function
+        result = generate_images_base64(data)
+        
+        # Check the result
+        self.assertIsNotNone(result)
+        self.assertEqual(len(result), 1)  # Ensure 1 image is generated
+        self.assertTrue(result[0].startswith("data:image/png;base64,"))
+
+    def test_generate_images_base64_invalid_data(self):
+        # Pass non-numeric data
+        data = np.array([["a", "b"], ["c", "d"]])
+        
+        # Call the function
+        result = generate_images_base64(data)
+        
+        # Check the result
+        self.assertIsNone(result)
+
+    def test_generate_images_base64_large_data(self):
+        # Create a large 3D numpy array (e.g., 10 images of 256x256)
+        data = np.random.rand(10, 256, 256).astype(np.float32) * 255
+        
+        # Call the function
+        result = generate_images_base64(data)
+        
+        # Check the result
+        self.assertIsNotNone(result)
+        self.assertEqual(len(result), 10)  # Ensure 10 images are generated
+        for image_base64 in result:
+            self.assertTrue(image_base64.startswith("data:image/png;base64,"))
 
         
 
