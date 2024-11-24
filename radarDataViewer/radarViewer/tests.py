@@ -27,6 +27,38 @@ class RadarFileModelTestCase(unittest.TestCase):
         self.assertIn(expected_timestamp, file_path, "The timestamp should be included in the file path.")
         self.assertTrue(file_path.startswith("uploads/"), "File path should start with 'uploads/'.")
         self.assertTrue(file_path.endswith(".SORT"), "File extension should remain the same.")
+    
+    def test_radar_file_model(self):
+        # Create a dummy file
+        test_file = SimpleUploadedFile(
+            "test_file.txt", b"This is a test file content", content_type="text/plain"
+        )
+
+        # Save a RadarFile instance
+        radar_file = RadarFile.objects.create(file=test_file)
+
+        # Check the model fields
+        self.assertTrue(radar_file.file.name.startswith("uploads/"))
+        self.assertEqual(radar_file.file.read(), b"This is a test file content")
+        self.assertIsNotNone(radar_file.uploaded_at)
+
+        # Clean up
+        radar_file.file.delete()
+
+    def test_radar_file_str_method(self):
+        # Create a dummy file
+        test_file = SimpleUploadedFile(
+            "test_file.txt", b"Dummy content", content_type="text/plain"
+        )
+
+        # Save a RadarFile instance
+        radar_file = RadarFile.objects.create(file=test_file)
+
+        # Check the string representation
+        self.assertEqual(str(radar_file), radar_file.file.name)
+
+        # Clean up
+        radar_file.file.delete()
 
 class TestUtils(unittest.TestCase):
 
