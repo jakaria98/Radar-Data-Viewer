@@ -105,75 +105,133 @@ const DataViewer = () => {
 					<Footer />
 				</div>
 			) : (
-				<div className="min-h-screen bg-black text-white flex flex-col">
+				<div className="min-h-screen bg-black text-white flex flex-col relative overflow-hidden">
+					{/* Background Animation */}
+					<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
+						<RadarAnimation />
+					</div>
+
 					<Header />
 
-					{/* Centered Main Section */}
-					<main className="flex-grow flex justify-center items-center">
-						{/* Image Container */}
-						<div className="flex flex-col justify-center items-center w-2/3 bg-glass border-2 border-green-400 shadow-glass image-container">
-							{images.length > 0 ? (
-								<img
-									src={images[currentIndex]}
-									alt={`Radar ${currentIndex}`}
-									className="radar-image rounded-lg"
-								/>
-							) : (
-								<p className="text-gray-200">
-									No images available
-								</p>
-							)}
-							<div className="flex justify-center items-center mt-4 space-x-4">
-								<button
-									className="glass-icon-button"
-									onClick={handleFirstImage}
-									title="First Image"
-								>
-									⏮️
-								</button>
-								<button
-									className="glass-icon-button"
-									onClick={handlePrevImage}
-									title="Previous Image"
-								>
-									◀️
-								</button>
-								<button
-									className="glass-icon-button"
-									onClick={togglePlayPause}
-									title={
-										isPlaying
-											? "Pause Slideshow"
-											: "Play Slideshow"
-									}
-								>
-									{isPlaying ? "⏸️" : "▶️"}
-								</button>
-								<button
-									className="glass-icon-button"
-									onClick={handleNextImage}
-									title="Next Image"
-								>
-									▶️
-								</button>
-								<button
-									className="glass-icon-button"
-									onClick={handleLastImage}
-									title="Last Image"
-								>
-									⏭️
-								</button>
-							</div>
-						</div>
+					{/* Main Section */}
+					<main className="flex-grow flex flex-col justify-center items-center py-8 relative z-10">
+						<div className="flex justify-center items-start w-[90%] space-x-8">
+							{/* Image Viewer Container */}
+							<div
+								className="w-1/2 bg-glass border-2 border-green-400 rounded-lg shadow-glass p-4"
+								style={{
+									backdropFilter: "blur(10px)",
+									background:
+										"rgba(255, 255, 255, 0.1)",
+								}}
+							>
+								{/* Image Viewer */}
+								{images.length > 0 ? (
+									<img
+										src={images[currentIndex]}
+										alt={`Radar ${currentIndex}`}
+										className="w-full rounded-lg border border-green-400 shadow-md"
+									/>
+								) : (
+									<p className="text-gray-200 text-lg text-center">
+										No images available
+									</p>
+								)}
 
-						{/* Metadata Container */}
-						<div className="flex flex-col justify-center items-center w-1/3 bg-glass border-2 border-green-400 shadow-glass p-6 metadata-container">
-							<h2 className="text-xl font-semibold text-green-400 mb-4">
-								Metadata Information
-							</h2>
-							<pre className="text-gray-200">
-								{JSON.stringify(metadata, null, 2)}
-							</pre>
+								{/* Navigation Buttons */}
+								<div className="flex justify-center items-center mt-4 space-x-4">
+									<button
+										className="glass-icon-button"
+										onClick={handleFirstImage}
+										title="First Image"
+									>
+										◀️◀️
+									</button>
+									<button
+										className="glass-icon-button"
+										onClick={handlePrevImage}
+										title="Previous Image"
+									>
+										◀️
+									</button>
+									<button
+										className="glass-icon-button"
+										onClick={togglePlayPause}
+										title={
+											isPlaying
+												? "Pause Slideshow"
+												: "Play Slideshow"
+										}
+									>
+										{isPlaying ? "| |" : "▶️"}
+									</button>
+									<button
+										className="glass-icon-button"
+										onClick={handleNextImage}
+										title="Next Image"
+									>
+										▶️
+									</button>
+									<button
+										className="glass-icon-button"
+										onClick={handleLastImage}
+										title="Last Image"
+									>
+										▶️▶️
+									</button>
+								</div>
+							</div>
+
+							{/* Metadata Container */}
+							<div
+								className="w-1/2 bg-glass border-2 border-green-400 rounded-lg shadow-glass p-6"
+								style={{
+									backdropFilter: "blur(10px)",
+									background:
+										"rgba(255, 255, 255, 0.1)",
+								}}
+							>
+								<h2 className="text-xl font-semibold text-green-400 mb-4">
+									Image Metadata
+								</h2>
+								<table className="w-full text-left text-gray-200">
+									<tbody>
+										{metadata
+											? Object.entries(
+													metadata
+											  ).map(
+													([
+														key,
+														value,
+													]) => (
+														<tr
+															key={
+																key
+															}
+														>
+															<td className="py-2 pr-4 font-semibold text-green-400">
+																{
+																	key
+																}
+																:
+															</td>
+															<td className="py-2">
+																{typeof value ===
+																"object"
+																	? JSON.stringify(
+																			value,
+																			null,
+																			2
+																	  )
+																	: value}
+															</td>
+														</tr>
+													)
+											  )
+											: "No metadata available"}
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</main>
 
