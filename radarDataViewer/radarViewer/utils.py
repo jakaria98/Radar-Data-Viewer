@@ -12,11 +12,12 @@ from scipy.ndimage import zoom
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
+# Generates a JSON response for error messages.
 def create_error_response(message, status_code=400):
     logger.error(f"{message} (status: {status_code})")
     return JsonResponse({"error": message, "status": status_code})
 
-
+# Processes the .SORT radar file, extracting metadata and binary data, performing signal processing, and generating images.
 def process_sort_file(file_path):
     try:
         with open(file_path, 'rb') as f:
@@ -83,7 +84,7 @@ def process_sort_file(file_path):
         return None, None, None, None
 
 
-
+# Extracts metadata from the .SORT file header.
 def parse_sort_header(header):
     metadata = {}
     try:
@@ -118,7 +119,7 @@ def parse_sort_header(header):
     logger.info(f"Extracted metadata: {metadata}")
     return metadata
 
-
+# Converts a coordinate from DMS format to decimal degrees.
 def dms_to_decimal(dms_str):
     try:
         parts = list(map(int, dms_str.split('-')))
@@ -128,7 +129,7 @@ def dms_to_decimal(dms_str):
         logger.error(f"Error converting DMS to decimal: {e}")
         raise
 
-
+# Applies a Hamming window function to the radar data.
 def apply_hamming_window(data):
     try:
         window = hamming(data.shape[-1])  # Apply along the samples axis
@@ -137,7 +138,7 @@ def apply_hamming_window(data):
         logger.error(f"Error applying Hamming window: {e}")
         return data
 
-
+# Resizes a 2D data slice to a specified shape.
 def resample_slice(slice, output_shape=(256, 256)):
     try:
         zoom_factors = (
@@ -149,7 +150,7 @@ def resample_slice(slice, output_shape=(256, 256)):
         logger.error(f"Error resampling slice: {e}")
         return slice
 
-
+# Generates Base64-encoded PNG images from radar data.
 def generate_images_base64(data, output_shape=(256, 256)):
     image_base64_list = []
     try:
@@ -182,7 +183,7 @@ def generate_images_base64(data, output_shape=(256, 256)):
         logger.error(f"Error generating Base64 images: {e}")
         return None
 
-
+# Converts polar coordinates (range, angle) to Cartesian coordinates (x, y)
 def polar_to_cartesian(ranges, angles):
     try:
         x = ranges[:, None] * np.cos(angles[None, :])
