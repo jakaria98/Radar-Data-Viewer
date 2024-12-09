@@ -104,4 +104,34 @@ def get_user_files(request):
             "error": str(e)
         }, status=500)
 
+#Controller for deleting a file uploaded by the authenticated user
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_user_file(request, file_id):
+    try:
+        # Get the authenticated user
+        user = request.user
+
+        # Fetch the file by ID
+        radar_file = RadarFile.objects.filter(user=user, id=file_id).first()
+
+        # Check if the file exists
+        if not radar_file:
+            return create_error_response("File not found or does not belong to the user.", 404)
+
+        # Delete the file
+        radar_file.delete()
+
+        return JsonResponse({
+            "message": "File deleted successfully",
+            "file_id": file_id,
+        }, status=200)
+
+    except Exception as e:
+        logger.error(f"Error deleting user file: {e}")
+        return JsonResponse({
+            "message": "An error occurred while deleting the file",
+            "error": str(e)
+        }, status=500)
+    
 
