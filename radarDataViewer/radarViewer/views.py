@@ -8,6 +8,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+#Controller for uploading and processing a .SORT file
 @csrf_exempt
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -67,3 +68,40 @@ def upload_and_process_file(request):
     except Exception as e:
         logger.error(f"Unexpected error during file processing: {e}")
         return create_error_response("An unexpected error occurred while processing the file.", 500)
+
+#Controller for fetching all files uploaded by the authenticated user
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])  # Ensure only authenticated users can access this API
+def get_user_files(request):
+    try:
+        # Get the authenticated user
+        user = request.user
+
+        # Fetch all files uploaded by the user
+        user_files = RadarFile.objects.filter(user=user).order_by('-uploaded_at')
+
+        # Prepare the response data
+        files_data = [
+            {
+                "id": radar_file.id,
+                "filename": radar_file.file.name,
+                "uploaded_at": radar_file.uploaded_at.strftime("%Y-%m-%d %H:%M:%S"),
+                "file_url": radar_file.file.url,
+            }
+            for radar_file in user_files
+        ]
+
+        return JsonResponse({
+            "message": "User files retrieved successfully",
+            "user": user.username,
+            "files": files_data,
+        }, status=200)
+
+    except Exception as e:
+        logger.error(f"Error retrieving user files: {e}")
+        return JsonResponse({
+            "message": "An error occurred while fetching the files",
+            "error": str(e)
+        }, status=500)
+
+
