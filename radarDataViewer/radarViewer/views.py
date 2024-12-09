@@ -104,7 +104,6 @@ def get_user_files(request):
             "error": str(e)
         }, status=500)
 
-#Controller for deleting a file uploaded by the authenticated user
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def delete_user_file(request, file_id):
@@ -112,12 +111,14 @@ def delete_user_file(request, file_id):
         # Get the authenticated user
         user = request.user
 
-        # Fetch the file by ID
-        radar_file = RadarFile.objects.filter(user=user, id=file_id).first()
-
-        # Check if the file exists
-        if not radar_file:
+        # Fetch the file by ID, ensuring it belongs to the authenticated user
+        try:
+            radar_file = RadarFile.objects.get(user=user, id=file_id)
+        except RadarFile.DoesNotExist:
             return create_error_response("File not found or does not belong to the user.", 404)
+
+        # Log the file deletion attempt
+        logger.info(f"User '{user.username}' is deleting file '{radar_file.file.name}' (ID: {file_id})")
 
         # Delete the file
         radar_file.delete()
@@ -128,12 +129,9 @@ def delete_user_file(request, file_id):
         }, status=200)
 
     except Exception as e:
-        logger.error(f"Error deleting user file: {e}")
-        return JsonResponse({
-            "message": "An error occurred while deleting the file",
-            "error": str(e)
-        }, status=500)
-    
+        logger.error(f"Error deleting user file (ID: {file_id}): {e}")
+        return create_error_response("An error occurred while deleting the file.", 500)
+
 
 #Controller for fetching a file uploaded by the authenticated user
 @api_view(['GET'])
@@ -143,27 +141,42 @@ def get_user_file(request, file_id):
         # Get the authenticated user
         user = request.user
 
-        # Fetch the file by ID
-        radar_file = RadarFile.objects.filter(user=user, id=file_id).first()
-
-        # Check if the file exists
-        if not radar_file:
+        # Fetch the file by ID, ensuring it belongs to the authenticated user
+        try:
+            radar_file = RadarFile.objects.get(user=user, id=file_id)
+        except RadarFile.DoesNotExist:
             return create_error_response("File not found or does not belong to the user.", 404)
 
-        return JsonResponse({
-            "message": "File retrieved successfully",
-            "file": {
-                "id": radar_file.id,
-                "filename": radar_file.file.name,
-                "uploaded_at": radar_file.uploaded_at.strftime("%Y-%m-%d %H:%M:%S"),
-                "file_url": radar_file.file.url,
+        # Log the file retrieval
+        logger.info(f"User '{user.username}' retrieved file '{radar_file.file.name}' (ID: {file_id})")
+
+        # Process the .SORT file using the utility function
+        metadata, images, cartesian_data = process_sort_file(radar_file.file.path)
+        if metadata is None or images is None:
+            return create_error_response("Failed to process the .SORT file. Ensure the file format is correct.", 500)
+
+        # Prepare the file data for the response
+        file_data = {
+            "id": radar_file.id,
+            "filename": radar_file.file.name,
+            "uploaded_at": radar_file.uploaded_at.strftime("%Y-%m-%d %H:%M:%S"),
+            "file_url": radar_file.file.url,  # Optional if frontend needs it
+            "metadata": metadata,
+            "images": images,  # Base64-encoded images from the `process_sort_file` function
+        }
+
+        # Include Cartesian data if available
+        if cartesian_data and "x" in cartesian_data and "y" in cartesian_data:
+            file_data["cartesian_data"] = {
+                "x": cartesian_data["x"].tolist(),  # Convert NumPy array to list
+                "y": cartesian_data["y"].tolist(),
             }
+
+        return JsonResponse({
+            "message": "File retrieved and processed successfully",
+            "file": file_data
         }, status=200)
 
     except Exception as e:
-        logger.error(f"Error retrieving user file: {e}")
-        return JsonResponse({
-            "message": "An error occurred while fetching the file",
-            "error": str(e)
-        }, status=500)
-    
+        logger.error(f"Error retrieving user file (ID: {file_id}): {e}")
+        return create_error_response("An error occurred while fetching the file.", 500)
