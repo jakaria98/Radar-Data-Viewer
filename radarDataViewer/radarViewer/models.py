@@ -14,7 +14,8 @@ def timestamped_file_path(instance, filename):
 
 # Model to store the uploaded radar file
 class RadarFile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)  # Associate the file with a user
+    #user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Associate the file with a user
     file = models.FileField(upload_to=timestamped_file_path)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
