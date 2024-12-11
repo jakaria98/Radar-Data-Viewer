@@ -77,6 +77,15 @@ const DataViewer = () => {
 								background: "rgba(255, 255, 255, 0.1)", // Keeps the glass effect
 							}}
 						>
+							{/* 
+								- task assigned to Sadia apu
+								History button needs to be added here
+								- add button
+								- make the necessary adjustment
+								- fix the alignment without disrupting other element
+								- follow the theme
+							
+							*/}
 							<h1 className="text-3xl font-bold text-green-400 mb-6">
 								No Data Available
 							</h1>
@@ -213,6 +222,7 @@ const DataViewer = () => {
 																{
 																	key
 																}
+
 																:
 															</td>
 															<td className="py-2">
