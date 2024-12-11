@@ -1,7 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import RadarAnimation from "../Components/RadarAnimation";
 
 const LoginPage = () => {
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [message, setMessage] = useState("");
+
+	const handleLogin = async () => {
+		if (!username || !password) {
+			setMessage("Please enter both username and password.");
+			return;
+		}
+
+		try {
+			// Send credentials to the backend
+			const response = await fetch(
+				"http://127.0.0.1:8000/api/login/",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ username, password }),
+				}
+			);
+
+			const data = await response.json();
+
+			if (response.ok) {
+				setMessage("Login successful!");
+				console.log("Response:", data);
+			} else {
+				setMessage(data.message || "Invalid username or password.");
+			}
+		} catch (error) {
+			console.error("Error checking user:", error);
+			setMessage("Error logging in. Please try again.");
+		}
+	};
+
 	return (
 		<div className="min-h-screen flex flex-col justify-center items-center bg-black text-white relative overflow-hidden">
 			{/* Background Animation */}
