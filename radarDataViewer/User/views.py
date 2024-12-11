@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
-from .models import User
+from django.contrib.auth.models import User
 from .serializers import UserSerializer, UpdateUserSerializer
 
 # Create your views here.
