@@ -13,7 +13,7 @@ test-job:
   stage: test
   before_script:
     # Install pipenv
-    - pip install pipenv
+    - pip3 install pipenv
     # Install dependencies using Pipfile
     - pipenv install --dev
   script:
