@@ -11,6 +11,13 @@ build-job:       # This job runs in the build stage, which runs first.
 
 test-job:
   stage: test
+  before_script:
+    # Install pipenv
+    - apt-get update
+    # Install pipenv
+    - pip install pipenv
+    # Install dependencies from Pipfile
+    - pipenv install --dev
   script:
     # Activate the pipenv shell and run tests
     - python manage.py test
