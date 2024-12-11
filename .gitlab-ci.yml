@@ -13,7 +13,7 @@ test-job:
   stage: test
   script:
     # Activate the pipenv shell and run tests
-    - pipenv run python manage.py test
+    - python manage.py test
 
 lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
