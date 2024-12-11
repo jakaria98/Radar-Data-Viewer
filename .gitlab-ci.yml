@@ -13,8 +13,11 @@ test-job:
   stage: test
   before_script:
     # Install pipenv
+    - apt-get update
+    - apt-get install -y python3 python3-pip
+    # Install pipenv
     - pip3 install pipenv
-    # Install dependencies using Pipfile
+    # Install dependencies from Pipfile
     - pipenv install --dev
   script:
     # Activate the pipenv shell and run tests
