@@ -14,10 +14,12 @@ def timestamped_file_path(instance, filename):
 
 # Model to store the uploaded radar file
 class RadarFile(models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Associate the file with a user
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)  # Associate the file with a user
     file = models.FileField(upload_to=timestamped_file_path)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.file.name} uploaded by {self.user.username} at {self.uploaded_at}"
+        user_info = self.user.username if self.user else "Unknown user"
+        return f"{self.file.name} uploaded by {user_info} at {self.uploaded_at}"
+
