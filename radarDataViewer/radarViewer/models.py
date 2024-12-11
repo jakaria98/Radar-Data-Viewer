@@ -20,6 +20,9 @@ class RadarFile(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        user_info = self.user.username if self.user else "Unknown user"
-        return f"{self.file.name} uploaded by {user_info} at {self.uploaded_at}"
+        if self.user:
+            return f"{self.file.name} uploaded by {self.user.username} at {self.uploaded_at}"
+        return self.file.name
+
+
 
