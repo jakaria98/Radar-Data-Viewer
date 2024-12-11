@@ -18,8 +18,8 @@ test-job:
     - pip install pipenv
     - pipenv install --dev
   script:
-    # Run Django test cases
-    - pipenv run python manage.py test
+    - cd radarDataViewer  # Navigate to the directory containing manage.py
+    - pipenv run python manage.py test  # Run Django test cases
 
 lint-test-job:
   stage: test
