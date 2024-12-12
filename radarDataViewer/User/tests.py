@@ -25,3 +25,42 @@ class LoginViewTest(APITestCase):
         response = self.client.post('/login/', {'username': 'testuser', 'password': 'password123'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn('Login successful', response.data['message'])
+
+class RegisterViewTest(APITestCase):
+    def test_successful_registration(self):
+        response = self.client.post('/register/', {
+            'username': 'newuser',
+            'password': 'securepassword',
+            'email': 'newuser@example.com',
+        })
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertIn('token', response.data)
+        self.assertIn('user', response.data)
+
+    def test_missing_field(self):
+        response = self.client.post('/register/', {
+            'username': 'newuser',
+            'password': 'securepassword',
+        })  # Missing email
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('email is required.', response.data['detail'])
+
+    def test_invalid_data(self):
+        response = self.client.post('/register/', {
+            'username': 'newuser',
+            'password': '',
+            'email': 'not-an-email',
+        })
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('password', response.data)
+        self.assertIn('email', response.data)
+
+    def test_duplicate_username(self):
+        User.objects.create_user(username='existinguser', password='password123')
+        response = self.client.post('/register/', {
+            'username': 'existinguser',
+            'password': 'newpassword',
+            'email': 'newuser@example.com',
+        })
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('username', response.data)
