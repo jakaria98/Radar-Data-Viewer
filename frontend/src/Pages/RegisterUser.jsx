@@ -64,7 +64,7 @@ export default function RegisterUser() {
 				setMessage("User added successfully!");
 				console.log("Response: ", data);
 
-				navigate("/home");
+				navigate("/all-users");
 			} else {
 				setMessage(data.message || "Invalid data!");
 			}
