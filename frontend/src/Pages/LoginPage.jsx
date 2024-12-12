@@ -45,7 +45,7 @@ const LoginPage = () => {
 				});
 
 				setMessage("Login successful!");
-				navigate("/register");
+				navigate("/");
 			} else {
 				setMessage(data.message || "Invalid username or password.");
 			}

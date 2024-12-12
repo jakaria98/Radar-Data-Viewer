@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Components/AuthContext";
+import Header from "../Components/Header";
 import RadarAnimation from "../Components/RadarAnimation";
 
 export default function RegisterUser() {
@@ -22,6 +23,8 @@ export default function RegisterUser() {
 			<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
 				<RadarAnimation />
 			</div>
+
+			<Header />
 
 			{/* Login Form */}
 			<div
