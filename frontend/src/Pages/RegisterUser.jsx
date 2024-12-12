@@ -40,7 +40,7 @@ export default function RegisterUser() {
 			return;
 		}
 
-		try{
+		try {
 			const response = await fetch(
 				"http://127.0.0.1:8000/api/register/",
 				{
@@ -48,11 +48,29 @@ export default function RegisterUser() {
 					headers: {
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify({ firstName, lastName, email, username, password }),
+					body: JSON.stringify({
+						firstName,
+						lastName,
+						email,
+						username,
+						password,
+					}),
 				}
 			);
 
 			const data = await response.json();
+
+			if (response.ok) {
+				setMessage("User added successfully!");
+				console.log("Response: ", data);
+
+				navigate("/home");
+			} else {
+				setMessage(data.message || "Invalid data!");
+			}
+		} catch (error) {
+			console.error("Error: ", error);
+			setMessage("Error adding new user");
 		}
 	};
 	return (
