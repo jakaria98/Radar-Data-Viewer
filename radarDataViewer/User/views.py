@@ -86,16 +86,28 @@ def register(request):
 ########################## Not working
 @api_view(['PUT'])
 def update_user(request):
-    user = request.user
-    serializer = UpdateUserSerializer(user, data=request.data)
+    user = request.user  # Authenticated user making the request
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+    
     if serializer.is_valid():
+        # Update the user
         serializer.save()
-        # user = User.objects.get(username=request.data['username'])
-        # user.set_password(request.data['password'])
-        # user.save()
-        # token = Token.objects.create(user=user)
-        return Response({'user': serializer.data, "message" : "Updated User info Succesfully"})
-    return Response(serializer.errors, status=status.HTTP_200_OK)
+
+        # If the password is being updated, hash it securely
+        if 'password' in request.data:
+            user.set_password(request.data['password'])
+            user.save()
+
+        return Response(
+            {'user': serializer.data, "message": "User info updated successfully"},
+            status=status.HTTP_200_OK
+        )
+    
+    return Response(
+        serializer.errors,
+        status=status.HTTP_400_BAD_REQUEST
+    )
+
 ########################## Not working
 ########################## Not working
 ########################## Not working
