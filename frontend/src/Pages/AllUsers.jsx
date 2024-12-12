@@ -104,7 +104,15 @@ const AllUsers = () => {
 										}}
 									>
 										<td className="px-6 py-4">
-											{user.first_name || "-"}
+											{user.is_staff
+												? `*  ${
+														user.first_name ||
+														"-"
+												  }`
+												: `${
+														user.first_name ||
+														"-"
+												  }`}
 										</td>
 										<td className="px-6 py-4">
 											{user.last_name || "-"}
