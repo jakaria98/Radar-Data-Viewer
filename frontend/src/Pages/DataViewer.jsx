@@ -66,6 +66,55 @@ const DataViewer = () => {
 		setIsPlaying(!isPlaying);
 	};
 
+	// formating the metadata
+	const formatMetadata = (metadata) => {
+		const metadataMap = {
+			num_samples: "Number of Samples",
+			frequency: "Frequency",
+			year: "Year",
+			range_resolution: "Range Resolution",
+			true_north: "True North",
+			rate: "Rate",
+			num_ranges: "Number of Ranges",
+			num_antennas: "Number of Antennas",
+			latitude: "Latitude",
+			longitude: "Longitude",
+			mt: "Maximum Transmission (MT)",
+			pwr: "Power (PWR)",
+			md: "Mode (MD)",
+			offset: "Offset",
+			rx_offset: "Receiver Offset (RXOFFSET)",
+			heading: "Heading (HD)",
+			timestamp: "Timestamp",
+		};
+
+		const units = {
+			num_samples: "samples",
+			frequency: "MHz",
+			year: "year",
+			range_resolution: "km",
+			true_north: "degrees",
+			rate: "seconds",
+			num_ranges: "ranges",
+			num_antennas: "antennas",
+			latitude: "degrees",
+			longitude: "degrees",
+			mt: "unknown",
+			pwr: "power units",
+			md: "unknown",
+			offset: "units",
+			rx_offset: "units",
+			heading: "degrees",
+			timestamp: "",
+		};
+
+		return Object.entries(metadata).map(([key, value]) => {
+			const label = metadataMap[key] || key;
+			const unit = units[key] || "";
+			return `${label}: ${value} ${unit}`.trim();
+		});
+	};
+
 	return (
 		<>
 			{!radarData ? (
