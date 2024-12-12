@@ -64,16 +64,29 @@ const Header = () => {
 								</li>
 
 								{authState.isAdmin && (
-									<li
-										className="cursor-pointer hover:bg-green-400 text-green-400 hover:text-black text-center py-2"
-										onClick={() =>
-											handleNavigation(
-												"/register"
-											)
-										}
-									>
-										Add User
-									</li>
+									<>
+										<li
+											className="cursor-pointer hover:bg-green-400 text-green-400 hover:text-black text-center py-2"
+											onClick={() =>
+												handleNavigation(
+													"/register"
+												)
+											}
+										>
+											Add User
+										</li>
+
+										<li
+											className="cursor-pointer hover:bg-green-400 text-green-400 hover:text-black text-center py-2"
+											onClick={() =>
+												handleNavigation(
+													"/all-users"
+												)
+											}
+										>
+											All Users
+										</li>
+									</>
 								)}
 								<li className="cursor-pointerpy-2">
 									<button
