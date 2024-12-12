@@ -46,9 +46,8 @@ def login_view(request):
 def register(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
-        print("jack")
         user = serializer.save()
-        user.set_password(request.data['password'])  # Ensure password is hashed
+        user.set_password(request.data['password'])
         user.save()
         token, _ = Token.objects.get_or_create(user=user)
         return Response({

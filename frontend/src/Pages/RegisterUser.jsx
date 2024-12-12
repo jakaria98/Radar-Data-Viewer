@@ -49,8 +49,8 @@ export default function RegisterUser() {
 						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({
-						firstName,
-						lastName,
+						first_name: firstName,
+						last_name: lastName,
 						email,
 						username,
 						password,
