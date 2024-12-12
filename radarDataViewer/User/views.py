@@ -114,6 +114,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import authentication_classes, permission_classes
 
+
 class LoginAnonThrottle(AnonRateThrottle):
     rate = '10/min'
 
@@ -127,7 +128,7 @@ class LoginUserThrottle(UserRateThrottle):
 def login_view(request):
     username = request.data.get('username')
     password = request.data.get('password')
-
+    print(username)
     if not username or not password:
         return Response({"detail": "Username and password are required"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -135,30 +136,49 @@ def login_view(request):
     if user is None:
         return Response({"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
-    login(request, user)
+    token, _ = Token.objects.get_or_create(user=user)
     serializer = UserSerializer(user)
-    return Response({'message': "Login successful", 'user': serializer.data}, status=status.HTTP_200_OK)
+    return Response({
+        'message': "Login successful",
+        'user': serializer.data,
+        'token': token.key
+    }, status=status.HTTP_200_OK)
+
 
 
 @api_view(['POST'])
 def register(request):
     serializer = UserSerializer(data=request.data)
+    serializer.is_valid()
+    print(serializer.errors )
     if serializer.is_valid():
+        print("jack")
         user = serializer.save()
-        token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key, 'user': serializer.data}, status=status.HTTP_201_CREATED)
+        user.set_password(request.data['password'])  # Ensure password is hashed
+        user.save()
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user': serializer.data,
+            'message': "User created successfully"
+        }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 @api_view(['PUT'])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def update_user(request):
-    if not request.user.is_authenticated:
-        return Response({"detail": "Authentication required."}, status=status.HTTP_401_UNAUTHORIZED)
-
     serializer = UpdateUserSerializer(request.user, data=request.data, partial=True)
     if serializer.is_valid():
+        if 'password' in request.data:
+            request.user.set_password(request.data['password'])
+            request.user.save()
         serializer.save()
-        return Response({'user': serializer.data, "message": "User info updated successfully"}, status=status.HTTP_200_OK)
+        return Response({
+            'user': serializer.data,
+            "message": "User info updated successfully"
+        }, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

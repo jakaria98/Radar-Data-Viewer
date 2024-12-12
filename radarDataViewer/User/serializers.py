@@ -14,6 +14,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'username', 'password', 'email']
         extra_kwargs = {
             'password': {'write_only': True},
+            'is_staff': {'default': False},
+            'is_superuser': {'default': False},
         }
 
     def create(self, validated_data):
@@ -22,11 +24,12 @@ class UserSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             first_name=validated_data.get('first_name', ''),
             last_name=validated_data.get('last_name', ''),
+            is_staff=validated_data.get('is_staff', False),
+            is_superuser=validated_data.get('is_superuser', False),
         )
         user.set_password(validated_data['password'])
         user.save()
         return user
-
 
 class UpdateUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=False, validators=[EmailValidator()])
