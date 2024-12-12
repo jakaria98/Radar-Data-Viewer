@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Components/AuthContext";
 import Footer from "../Components/Footer";
@@ -6,6 +6,14 @@ import Header from "../Components/Header";
 import RadarAnimation from "../Components/RadarAnimation";
 
 export default function RegisterUser() {
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+
+	const [message, setMessage] = useState("");
+
 	const navigate = useNavigate();
 	const { authState } = useAuth();
 	useEffect(() => {
@@ -24,8 +32,13 @@ export default function RegisterUser() {
 		}
 	}, [authState.isLoggedIn, authState.isAdmin, navigate]);
 
-	const handleRegistration = () => {
-		console.log("Registration handling");
+	const handleRegistration = async (e) => {
+		e.preventDefault();
+
+		if (!firstName || !lastName || !email || !username || !password) {
+			setMessage("Please enter the required values.");
+			return;
+		}
 	};
 	return (
 		<div className="min-h-screen flex flex-col justify-center items-center bg-black text-white relative overflow-hidden">
@@ -70,6 +83,10 @@ export default function RegisterUser() {
 								<input
 									type="text"
 									id="firstName"
+									value={firstName}
+									onChange={(e) =>
+										setFirstName(e.target.value)
+									}
 									className="w-full px-4 py-2 bg-black text-white border border-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
 									placeholder="First Name"
 								/>
@@ -84,6 +101,10 @@ export default function RegisterUser() {
 								<input
 									type="text"
 									id="lastName"
+									value={lastName}
+									onChange={(e) =>
+										setLastName(e.target.value)
+									}
 									className="w-full px-4 py-2 bg-black text-white border border-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
 									placeholder="Last Name"
 								/>
@@ -99,6 +120,10 @@ export default function RegisterUser() {
 							<input
 								type="email"
 								id="email"
+								value={email}
+								onChange={(e) =>
+									setEmail(e.target.value)
+								}
 								className="w-full px-4 py-2 bg-black text-white border border-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
 								placeholder="Enter your email address"
 							/>
@@ -113,6 +138,10 @@ export default function RegisterUser() {
 							<input
 								type="text"
 								id="username"
+								value={username}
+								onChange={(e) =>
+									setUsername(e.target.value)
+								}
 								className="w-full px-4 py-2 bg-black text-white border border-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
 								placeholder="Enter your username"
 							/>
@@ -128,6 +157,10 @@ export default function RegisterUser() {
 							<input
 								type="password"
 								id="password"
+								value={password}
+								onChange={(e) =>
+									setPassword(e.target.value)
+								}
 								className="w-full px-4 py-2 bg-black text-white border border-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
 								placeholder="Enter your password"
 							/>
