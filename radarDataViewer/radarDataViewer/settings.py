@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'radarViewer',
     'User',
@@ -83,8 +84,8 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.AnonRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'user': '5/minute',  # Adjust rate as needed
-        'anon': '3/minute',
+        'user': '1000/minute',  # Adjust rate as needed
+        'anon': '1000/minute',
     },
 }
 

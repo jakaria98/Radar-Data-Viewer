@@ -1,22 +1,51 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-
+from django.core.validators import EmailValidator
 
 
 class UserSerializer(serializers.ModelSerializer):
-    class Meta(object):
-        model = User 
-        fields = ['id', 'first_name','last_name','username', 'password', 'email', "is_staff", "is_superuser"]
-        # fields = ['id', 'username', 'password', 'email']
+    email = serializers.EmailField(
+        required=True,
+        error_messages={"required": "Email is required.", "invalid": "Enter a valid email address."},
+    )
+
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'username', 'password', 'email']
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }
+
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', ''),
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
 
 class UpdateUserSerializer(serializers.ModelSerializer):
-    class Meta(object):
-        model = User 
-        fields = ['id', 'first_name','last_name','username', 'password', 'email', "is_staff", "is_superuser"]
-#         {
-#     "username": "adam",
-#      "password": "Pass1234!",
-#      "email": "adam@mail.com",
-#      "first_name" : "adam",
-#      "last_name" : "john"
-# }
+    email = serializers.EmailField(required=False, validators=[EmailValidator()])
+
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True, 'required': False},
+        }
+
+    def update(self, instance, validated_data):
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.email = validated_data.get('email', instance.email)
+
+        password = validated_data.get('password')
+        if password:
+            instance.set_password(password)
+
+        instance.save()
+        return instance
