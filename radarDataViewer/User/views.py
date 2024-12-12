@@ -1,23 +1,53 @@
-from django.shortcuts import render
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view, throttle_classes
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication
-from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate, login
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 from django.contrib.auth.models import User
-from .serializers import UserSerializer, UpdateUserSerializer
+from .serializers import UserSerializer
 
-# Create your views here.
+class LoginAnonThrottle(AnonRateThrottle):
+    rate = '5/min'  # Limit unauthenticated users to 5 requests per minute
+
+class LoginUserThrottle(UserRateThrottle):
+    rate = '10/min'  # Limit authenticated users to 10 requests per minute
+
 @api_view(['POST'])
-def login(request):
-    user = get_object_or_404(User, username=request.data['username'])
-    if not user.check_password(request.data['password']):
-        return Response("missing user", status=status.HTTP_404_NOT_FOUND)
-    token, created = Token.objects.get_or_create(user=user)
+@throttle_classes([LoginAnonThrottle, LoginUserThrottle])
+def login_view(request):
+    # Validate input fields
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    if not username or not password:
+        return Response(
+            {"detail": "Username and password are required"},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    # Authenticate user
+    user = authenticate(request, username=username, password=password)
+    if user is None:
+        return Response(
+            {"detail": "Invalid credentials"},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    # Use session-based login
+    login(request, user)
+
+    # Serialize user data
     serializer = UserSerializer(user)
-    return Response({'token': token.key, 'user': serializer.data})
+    return Response(
+        {
+            'message': "Login successful",
+            'user': serializer.data,
+        },
+        status=status.HTTP_200_OK
+    )
+
 
 @api_view(['POST'])
 def register(request):

@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 #Controller for uploading and processing a .SORT file
 @csrf_exempt
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+#@permission_classes([IsAuthenticated])
 def upload_and_process_file(request):
     try:
         logger.debug(f"Request method: {request.method}")
@@ -71,7 +71,7 @@ def upload_and_process_file(request):
 
 #Controller for fetching all files uploaded by the authenticated user
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])  # Ensure only authenticated users can access this API
+#@permission_classes([IsAuthenticated])  # Ensure only authenticated users can access this API
 def get_user_files(request):
     try:
         # Get the authenticated user
@@ -105,7 +105,7 @@ def get_user_files(request):
         }, status=500)
 
 @api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
+#@permission_classes([IsAuthenticated])
 def delete_user_file(request, file_id):
     try:
         # Get the authenticated user
@@ -135,7 +135,7 @@ def delete_user_file(request, file_id):
 
 #Controller for fetching a file uploaded by the authenticated user
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+#@permission_classes([IsAuthenticated])
 def get_user_file(request, file_id):
     try:
         # Get the authenticated user
