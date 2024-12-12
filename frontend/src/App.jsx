@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import AllUsers from "./Pages/AllUsers";
 import DataViewer from "./Pages/DataViewer";
 import LoginPage from "./Pages/LoginPage";
 import RegisterUser from "./Pages/RegisterUser";
@@ -34,6 +35,14 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<UploadFile />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/all-users"
+					element={
+						<ProtectedRoute>
+							<AllUsers />
 						</ProtectedRoute>
 					}
 				/>
