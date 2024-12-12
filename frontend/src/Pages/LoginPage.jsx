@@ -35,6 +35,16 @@ const LoginPage = () => {
 			if (response.ok) {
 				setMessage("Login successful!");
 				console.log("Response:", data);
+
+				const hasAdminStatus = data?.user?.is_staff;
+				setAuthState({
+					isLoggedIn: true,
+					username,
+					isAdmin: hasAdminStatus,
+				});
+
+				setMessage("Login successful!");
+				navigate("/");
 			} else {
 				setMessage(data.message || "Invalid username or password.");
 			}

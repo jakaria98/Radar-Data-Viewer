@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../Components/AuthContext";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import RadarAnimation from "../Components/RadarAnimation";
@@ -12,6 +13,13 @@ const DataViewer = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isPlaying, setIsPlaying] = useState(true); // State to control play/pause
 	const radarData = location.state && location.state.data;
+
+	const { authState } = useAuth();
+	useEffect(() => {
+		if (!authState.isLoggedIn) {
+			navigate("/login");
+		}
+	}, [authState.isLoggedIn, navigate]);
 
 	// Get data from location state
 	useEffect(() => {
