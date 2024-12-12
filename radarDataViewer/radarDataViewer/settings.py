@@ -84,8 +84,8 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.AnonRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'user': '1000/minute',  # Adjust rate as needed
-        'anon': '1000/minute',
+        'user': '5000/minute',
+        'anon': '5000/minute',
     },
 }
 
@@ -102,6 +102,9 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

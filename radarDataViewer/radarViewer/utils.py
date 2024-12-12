@@ -106,7 +106,6 @@ def parse_sort_header(header):
             'OFFSET': r'OFFSET:\s*([\d.]+)',
             'RXOFFSET': r'RXOFFSET:\s*([\d.]+)',
             'HD': r'HD:\s*(\d+)',
-            
             'description': r'(June\s+\d+\s+-\s+continuous)',
         }
 

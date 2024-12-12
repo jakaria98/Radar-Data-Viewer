@@ -1,35 +1,38 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
 from .models import RadarFile
 from .utils import process_sort_file, create_error_response
+from rest_framework.authentication import TokenAuthentication
 
 #Controller for uploading and processing a .SORT file
 @csrf_exempt
 @api_view(['POST'])
-#@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def upload_and_process_file(request):
+    print("upload_and_process_file")
     try:
         file = request.FILES.get('file')
-
+        
         # Check if file is uploaded
         if not file:
             return create_error_response("No file provided. Please upload a .SORT file.", 400)
-
+        print("file found")
         # Validate file type
         if not file.name.lower().endswith('.sort'):
             return create_error_response("Invalid file type. Please upload a .SORT file.", 400)
-
+        print("file type validated")
         # Validate file size (e.g., max 10MB)
         max_size_mb = 10
         if file.size > max_size_mb * 1024 * 1024:
             return create_error_response(f"File size exceeds {max_size_mb}MB limit.", 400)
-
+        print(request.user)
         # Save the uploaded file and associate with user
         radar_file = RadarFile(file=file, user=request.user)
         radar_file.save()
-
+        print("file saved")
         # Process the .SORT file
         try:
             metadata, images, cartesian_data = process_sort_file(radar_file.file.path)

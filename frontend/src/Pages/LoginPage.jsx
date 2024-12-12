@@ -17,47 +17,53 @@ const LoginPage = () => {
 	}, [authState.isLoggedIn, navigate]);
 
 	const handleLogin = async (e) => {
-		e.preventDefault();
-		if (!username || !password) {
-			setMessage("Please enter both username and password.");
-			return;
-		}
+        e.preventDefault();
+        if (!username || !password) {
+            setMessage('Please enter both username and password.');
+            return;
+        }
 
-		try {
-			const response = await fetch(
-				"http://127.0.0.1:8000/api/login/",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({ username, password }),
-				}
-			);
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
 
-			const data = await response.json();
+            const data = await response.json();
 
-			if (response.ok) {
-				setMessage("Login successful!");
-				console.log("Response:", data);
+            if (response.ok) {
+                setMessage('Login successful!');
+                console.log('Response:', data);
 
-				const hasAdminStatus = data?.user?.is_staff ? true : false;
-				console.log(hasAdminStatus);
-				setAuthState({
-					isLoggedIn: true,
-					username,
-					isAdmin: hasAdminStatus,
-				});
+                // Extract the token and other user details from the response
+                const token = data.token;
+                const hasAdminStatus = data?.user?.is_staff ? true : false;
 
-				navigate("/home");
-			} else {
-				setMessage(data.message || "Invalid username or password.");
-			}
-		} catch (error) {
-			console.error("Error checking user:", error);
-			setMessage("Error logging in. Please try again.");
-		}
-	};
+                // Save the token and user info in the auth state
+                setAuthState({
+                    isLoggedIn: true,
+                    username: data.user.username,
+                    token, // Save the token here
+                    isAdmin: hasAdminStatus,
+                });
+
+                // Optionally, save the token in localStorage or sessionStorage
+                localStorage.setItem('authToken', token);
+
+                // Navigate to the home page
+                navigate('/home');
+            } else {
+                setMessage(data.detail || 'Invalid username or password.');
+            }
+        } catch (error) {
+            console.error('Error checking user:', error);
+            setMessage('Error logging in. Please try again.');
+        }
+    };
+
 
 	return (
 		<div className="min-h-screen flex flex-col justify-center items-center bg-black text-white relative overflow-hidden">

@@ -1,112 +1,110 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Components/AuthContext";
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-import RadarAnimation from "../Components/RadarAnimation";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Components/AuthContext';
+import Footer from '../Components/Footer';
+import Header from '../Components/Header';
+import RadarAnimation from '../Components/RadarAnimation';
 
 const UploadFile = () => {
-	const [file, setFile] = useState(null);
-	const [message, setMessage] = useState("");
-	const navigate = useNavigate();
+    const [file, setFile] = useState(null);
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
-	const { authState } = useAuth();
-	useEffect(() => {
-		if (!authState.isLoggedIn) {
-			navigate("/login");
-		}
-	}, [authState.isLoggedIn, navigate]);
+    const { authState } = useAuth();
+    useEffect(() => {
+        if (!authState.isLoggedIn) {
+            navigate('/login');
+        }
+    }, [authState.isLoggedIn, navigate]);
 
-	const handleFileChange = (e) => {
-		setFile(e.target.files[0]);
-	};
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+    };
 
-	const handleUpload = async () => {
-		if (!file) {
-			setMessage("Please select a file to upload.");
-			return;
-		}
+    const handleUpload = async () => {
+        if (!file) {
+            setMessage('Please select a file to upload.');
+            return;
+        }
 
-		const formData = new FormData();
-		formData.append("file", file);
+        if (!authState.token) {
+            setMessage('You are not authorized. Please log in.');
+            navigate('/login'); // Redirect to login page if token is missing
+            return;
+        }
 
-		try {
-			const response = await fetch(
-				"http://127.0.0.1:8000/api/upload/",
-				{
-					method: "POST",
-					body: formData,
-					headers: {},
-				}
-			);
+        const formData = new FormData();
+        formData.append('file', file);
 
-			if (response.ok) {
-				const data = await response.json();
-				setMessage("File uploaded successfully!");
-				navigate("/", { state: { data } });
-			} else {
-				const errorData = await response.json();
-				setMessage(
-					`Failed to upload file: ${
-						errorData.message || "Unknown error"
-					}`
-				);
-			}
-		} catch (error) {
-			setMessage("Error uploading file. Please try again.");
-		}
-	};
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/upload/', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    Authorization: `Token ${authState.token}`, // Include token here
+                },
+            });
 
-	return (
-		<div className="min-h-screen flex flex-col bg-black text-white relative overflow-hidden">
-			<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
-				<RadarAnimation />
-			</div>
+            if (response.ok) {
+                const data = await response.json();
+                setMessage('File uploaded successfully!');
+                navigate('/', { state: { data } }); // Redirect with the uploaded file data
+            } else {
+                // Handle server errors and display proper message
+                const errorData = await response.json();
+                if (response.status === 401) {
+                    setMessage('Unauthorized. Please log in again.');
+                    navigate('/login'); // Redirect to login on 401
+                } else {
+                    setMessage(`Failed to upload file: ${errorData.message || 'Unknown error'}`);
+                }
+            }
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            setMessage('An unexpected error occurred while uploading the file.');
+        }
+    };
 
-			<Header />
+    return (
+        <div className="min-h-screen flex flex-col bg-black text-white relative overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none flex justify-center items-center">
+                <RadarAnimation />
+            </div>
 
-			<main className="flex-grow flex flex-col justify-center items-center py-8 relative z-10">
-				<div
-					className="w-[700px] bg-glass border-2 border-green-400 rounded-lg shadow-glass p-6"
-					style={{
-						backdropFilter: "blur(10px)",
-						background: "rgba(255, 255, 255, 0.1)",
-					}}
-				>
-					<h2 className="text-xl font-semibold text-green-400 mb-4">
-						Upload File
-					</h2>
-					<div className="flex flex-col items-center">
-						<div className="relative mb-4">
-							<input
-								type="file"
-								onChange={handleFileChange}
-								className="hidden"
-								id="fileInput"
-							/>
-							<label
-								htmlFor="fileInput"
-								className="glass-button cursor-pointer"
-							>
-								{file ? file.name : "Choose File"}
-							</label>
-						</div>
-						<button
-							className="glass-button"
-							onClick={handleUpload}
-						>
-							Upload
-						</button>
-					</div>
-					{message && (
-						<p className="text-green-400 mt-4">{message}</p>
-					)}
-				</div>
-			</main>
+            <Header />
 
-			<Footer />
-		</div>
-	);
+            <main className="flex-grow flex flex-col justify-center items-center py-8 relative z-10">
+                <div
+                    className="w-[700px] bg-glass border-2 border-green-400 rounded-lg shadow-glass p-6"
+                    style={{
+                        backdropFilter: 'blur(10px)',
+                        background: 'rgba(255, 255, 255, 0.1)',
+                    }}
+                >
+                    <h2 className="text-xl font-semibold text-green-400 mb-4">Upload File</h2>
+                    <div className="flex flex-col items-center">
+                        <div className="relative mb-4">
+                            <input
+                                type="file"
+                                onChange={handleFileChange}
+                                className="hidden"
+                                id="fileInput"
+                            />
+                            <label htmlFor="fileInput" className="glass-button cursor-pointer">
+                                {file ? file.name : 'Choose File'}
+                            </label>
+                        </div>
+                        <button className="glass-button" onClick={handleUpload}>
+                            Upload
+                        </button>
+                    </div>
+                    {message && <p className="text-green-400 mt-4">{message}</p>}
+                </div>
+            </main>
+
+            <Footer />
+        </div>
+    );
 };
 
 export default UploadFile;
