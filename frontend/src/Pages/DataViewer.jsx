@@ -135,7 +135,13 @@ const DataViewer = () => {
 			.map((key) => {
 				const label = metadataMap[key] || key;
 				const unit = units[key] || "";
-				return `${label}: ${metadata[key]} ${unit}`.trim();
+
+				const value =
+					typeof metadata[key] === "number" &&
+					!Number.isInteger(metadata[key])
+						? metadata[key].toFixed(2)
+						: metadata[key];
+				return `${label}: ${value} ${unit}`.trim();
 			});
 	};
 
