@@ -20,7 +20,7 @@ class RadarFileModelTestCase(unittest.TestCase):
         # Generate the file path
         file_path = timestamped_file_path(mock_instance, filename)
 
-        current_time = datetime.datetime.now()
+        current_time = datetime.now()
         formatted_timestamp = current_time.strftime('%Y%m%d%H%M%S')
         
         # Extract timestamp and validate
