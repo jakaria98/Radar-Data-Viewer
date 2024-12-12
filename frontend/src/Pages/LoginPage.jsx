@@ -24,7 +24,6 @@ const LoginPage = () => {
 		}
 
 		try {
-			// Send credentials to the backend
 			const response = await fetch(
 				"http://127.0.0.1:8000/api/login/",
 				{
@@ -62,7 +61,6 @@ const LoginPage = () => {
 
 	return (
 		<div className="min-h-screen flex flex-col justify-center items-center bg-black text-white relative overflow-hidden">
-			{/* Background Animation */}
 			<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
 				<RadarAnimation />
 			</div>
@@ -95,7 +93,6 @@ const LoginPage = () => {
 				}}
 			>
 				<form onSubmit={handleLogin} className="space-y-4">
-					{/* Username */}
 					<div>
 						<label
 							htmlFor="username"
@@ -113,7 +110,6 @@ const LoginPage = () => {
 						/>
 					</div>
 
-					{/* Password */}
 					<div>
 						<label
 							htmlFor="password"

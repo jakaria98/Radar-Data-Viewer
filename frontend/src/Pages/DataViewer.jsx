@@ -77,7 +77,6 @@ const DataViewer = () => {
 					<Header />
 
 					<main className="flex-grow flex flex-col justify-center items-center py-8 relative z-10">
-						{/* Beautified Glass Container */}
 						<div
 							className="w-[750px] max-w-full bg-glass border-[3px] border-green-400 rounded-xl shadow-glass p-8 text-center transform transition duration-300 hover:scale-105"
 							style={{
@@ -85,15 +84,6 @@ const DataViewer = () => {
 								background: "rgba(255, 255, 255, 0.1)", // Keeps the glass effect
 							}}
 						>
-							{/* 
-								- task assigned to Sadia apu
-								History button needs to be added here
-								- add button
-								- make the necessary adjustment
-								- fix the alignment without disrupting other element
-								- follow the theme
-							
-							*/}
 							<h1 className="text-3xl font-bold text-green-400 mb-6">
 								No Data Available
 							</h1>
@@ -104,10 +94,8 @@ const DataViewer = () => {
 								our viewer.
 							</p>
 
-							{/* Subtle Decorative Line */}
 							<div className="w-16 h-[2px] bg-green-400 mx-auto mb-6"></div>
 
-							{/* Upload Button */}
 							<div className="flex justify-center">
 								<button
 									className="glass-button px-8 py-3 text-lg font-medium rounded-full border-[2px] border-green-400 shadow-md shadow-green-400/50 hover:shadow-lg hover:shadow-green-500/70 transition-all duration-300"
@@ -123,17 +111,14 @@ const DataViewer = () => {
 				</div>
 			) : (
 				<div className="min-h-screen bg-black text-white flex flex-col relative overflow-hidden">
-					{/* Background Animation */}
 					<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
 						<RadarAnimation />
 					</div>
 
 					<Header />
 
-					{/* Main Section */}
 					<main className="flex-grow flex flex-col justify-center items-center py-8 relative z-10">
 						<div className="flex justify-center items-start w-[90%] space-x-8">
-							{/* Image Viewer Container */}
 							<div
 								className="w-1/2 bg-glass border-2 border-green-400 rounded-lg shadow-glass p-4"
 								style={{
@@ -142,7 +127,6 @@ const DataViewer = () => {
 										"rgba(255, 255, 255, 0.1)",
 								}}
 							>
-								{/* Image Viewer */}
 								{images.length > 0 ? (
 									<img
 										src={images[currentIndex]}
@@ -155,7 +139,6 @@ const DataViewer = () => {
 									</p>
 								)}
 
-								{/* Navigation Buttons */}
 								<div className="flex justify-center items-center mt-4 space-x-4">
 									<button
 										className="glass-icon-button"
@@ -199,7 +182,6 @@ const DataViewer = () => {
 								</div>
 							</div>
 
-							{/* Metadata Container */}
 							<div
 								className="w-1/2 bg-glass border-2 border-green-400 rounded-lg shadow-glass p-6"
 								style={{

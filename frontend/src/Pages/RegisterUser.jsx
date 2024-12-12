@@ -75,7 +75,6 @@ export default function RegisterUser() {
 	};
 	return (
 		<div className="min-h-screen flex flex-col justify-center items-center bg-black text-white relative overflow-hidden">
-			{/* Background Animation */}
 			<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
 				<RadarAnimation />
 			</div>
