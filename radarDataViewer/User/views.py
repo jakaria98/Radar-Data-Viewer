@@ -51,15 +51,35 @@ def login_view(request):
 
 @api_view(['POST'])
 def register(request):
+    # Validate input fields
+    required_fields = ['username', 'password', 'email']
+    for field in required_fields:
+        if field not in request.data:
+            return Response(
+                {"detail": f"{field} is required."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+    
+    # Serialize the user data
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save()
-        user = User.objects.get(username=request.data['username'])
-        user.set_password(request.data['password'])
+        user = serializer.save()
+        user.set_password(request.data['password'])  # Hash the password
         user.save()
-        token = Token.objects.create(user=user)
-        return Response({'token': token.key, 'user': serializer.data, "message" : "User created Succesfully"})
-    return Response(serializer.errors, status=status.HTTP_200_OK)
+        
+        # Generate a token for the user
+        token, created = Token.objects.get_or_create(user=user)
+        return Response(
+            {
+                'token': token.key,
+                'user': serializer.data,
+                'message': "User created successfully",
+            },
+            status=status.HTTP_201_CREATED,
+        )
+    
+    # Return validation errors
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 ########################## Not working
 ########################## Not working
@@ -79,9 +99,10 @@ def update_user(request):
 ########################## Not working
 ########################## Not working
 ########################## Not working
-
+"""
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def test_token(request):
     return Response("passed for {}".format(request.user.email))
+"""
