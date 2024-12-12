@@ -42,8 +42,6 @@ def login_view(request):
         'token': token.key
     }, status=status.HTTP_200_OK)
 
-
-
 @api_view(['POST'])
 def register(request):
     serializer = UserSerializer(data=request.data)
@@ -59,8 +57,6 @@ def register(request):
             'message': "User created successfully"
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 
 @api_view(['PUT'])
 @authentication_classes([TokenAuthentication])
@@ -78,3 +74,11 @@ def update_user(request):
         }, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def get_all_users(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response({
+        "users": serializer.data,
+        "message": "Users fetched successfully"
+    }, status=status.HTTP_200_OK)
