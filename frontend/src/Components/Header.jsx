@@ -88,6 +88,19 @@ const Header = () => {
 										</li>
 									</>
 								)}
+
+								{authState.isLoggedIn && (
+									<li
+										className="cursor-pointer hover:bg-green-400 text-green-400 hover:text-black text-center py-2"
+										onClick={() =>
+											handleNavigation(
+												"/history"
+											)
+										}
+									>
+										History
+									</li>
+								)}
 								<li className="cursor-pointerpy-2">
 									<button
 										className="glass-button w-full"
