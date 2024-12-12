@@ -64,3 +64,33 @@ class RegisterViewTest(APITestCase):
         })
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('username', response.data)
+class UpdateUserTestCase(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='password123', email='test@example.com')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+
+    def test_update_user_info(self):
+        response = self.client.put('/update-user/', {
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'email': 'newemail@example.com'
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['user']['email'], 'newemail@example.com')
+
+    def test_update_password(self):
+        response = self.client.put('/update-user/', {'password': 'newpassword'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.check_password('newpassword'))
+
+    def test_partial_update(self):
+        response = self.client.put('/update-user/', {'first_name': 'John'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['user']['first_name'], 'John')
+
+    def test_invalid_email(self):
+        response = self.client.put('/update-user/', {'email': 'invalidemail'})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('email', response.data)
