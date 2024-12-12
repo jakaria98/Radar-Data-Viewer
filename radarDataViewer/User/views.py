@@ -81,9 +81,6 @@ def register(request):
     # Return validation errors
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-########################## Not working
-########################## Not working
-########################## Not working
 @api_view(['PUT'])
 def update_user(request):
     user = request.user  # Authenticated user making the request
@@ -108,9 +105,7 @@ def update_user(request):
         status=status.HTTP_400_BAD_REQUEST
     )
 
-########################## Not working
-########################## Not working
-########################## Not working
+
 """
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication, TokenAuthentication])

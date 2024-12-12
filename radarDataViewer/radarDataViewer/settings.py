@@ -75,6 +75,19 @@ TEMPLATES = [
     },
 ]
 
+
+# REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',
+        'rest_framework.throttling.AnonRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '5/minute',  # Adjust rate as needed
+        'anon': '3/minute',
+    },
+}
+
 WSGI_APPLICATION = 'radarDataViewer.wsgi.application'
 
 
