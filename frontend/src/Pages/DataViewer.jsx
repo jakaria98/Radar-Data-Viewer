@@ -66,45 +66,47 @@ const DataViewer = () => {
 		setIsPlaying(!isPlaying);
 	};
 
+	console.log(metadata);
+
 	// formating the metadata
 	const formatMetadata = (metadata) => {
 		const metadataMap = {
 			num_samples: "Number of Samples",
 			frequency: "Frequency",
 			year: "Year",
-			range_resolution: "Range Resolution",
-			true_north: "True North",
+			rangeRes: "Range Resolution",
+			trueNorth: "True North",
 			rate: "Rate",
 			num_ranges: "Number of Ranges",
 			num_antennas: "Number of Antennas",
 			latitude: "Latitude",
 			longitude: "Longitude",
-			mt: "Maximum Transmission (MT)",
-			pwr: "Power (PWR)",
-			md: "Mode (MD)",
-			offset: "Offset",
-			rx_offset: "Receiver Offset (RXOFFSET)",
-			heading: "Heading (HD)",
+			MT: "Maximum Transmission (MT)",
+			PWR: "Power (PWR)",
+			MD: "Mode (MD)",
+			OFFSET: "Offset",
+			RXOFFSET: "Receiver Offset (RXOFFSET)",
+			HD: "Heading (HD)",
 			timestamp: "Timestamp",
 		};
 
 		const units = {
 			num_samples: "samples",
 			frequency: "MHz",
-			year: "year",
-			range_resolution: "km",
-			true_north: "degrees",
+			year: "",
+			rangeRes: "km",
+			trueNorth: "degrees",
 			rate: "seconds",
 			num_ranges: "ranges",
 			num_antennas: "antennas",
 			latitude: "degrees",
 			longitude: "degrees",
-			mt: "unknown",
-			pwr: "power units",
-			md: "unknown",
-			offset: "units",
-			rx_offset: "units",
-			heading: "degrees",
+			MT: "unknown",
+			PWR: "power units",
+			MD: "unknown",
+			OFFSET: "units",
+			RXOFFSET: "units",
+			HD: "degrees",
 			timestamp: "",
 		};
 
@@ -242,44 +244,26 @@ const DataViewer = () => {
 								<h2 className="text-xl font-semibold text-green-400 mb-4">
 									Image Metadata
 								</h2>
-								<table className="w-full text-left text-gray-200">
-									<tbody>
-										{metadata
-											? Object.entries(
-													metadata
-											  ).map(
-													([
-														key,
-														value,
-													]) => (
-														<tr
-															key={
-																key
-															}
-														>
-															<td className="py-2 pr-4 font-semibold text-green-400">
-																{
-																	key
-																}
-
-																:
-															</td>
-															<td className="py-2">
-																{typeof value ===
-																"object"
-																	? JSON.stringify(
-																			value,
-																			null,
-																			2
-																	  )
-																	: value}
-															</td>
-														</tr>
-													)
-											  )
-											: "No metadata available"}
-									</tbody>
-								</table>
+								<ul className="list-disc pl-5 text-gray-200">
+									{metadata &&
+									Object.keys(metadata).length >
+										0 ? (
+										formatMetadata(metadata).map(
+											(item, index) => (
+												<li
+													key={index}
+													className="py-1"
+												>
+													{item}
+												</li>
+											)
+										)
+									) : (
+										<li>
+											No metadata available!
+										</li>
+									)}
+								</ul>
 							</div>
 						</div>
 					</main>
