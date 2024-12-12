@@ -45,11 +45,15 @@ const UploadFile = () => {
                 },
             });
 
+            console.log('Response before if statement:', response);
+
             if (response.ok) {
                 const data = await response.json();
+                console.log('Response:', data);
                 setMessage('File uploaded successfully!');
                 navigate('/', { state: { data } }); // Redirect with the uploaded file data
             } else {
+                console.log('Response:', response);
                 // Handle server errors and display proper message
                 const errorData = await response.json();
                 if (response.status === 401) {
