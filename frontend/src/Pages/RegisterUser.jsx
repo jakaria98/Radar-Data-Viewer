@@ -39,6 +39,21 @@ export default function RegisterUser() {
 			setMessage("Please enter the required values.");
 			return;
 		}
+
+		try{
+			const response = await fetch(
+				"http://127.0.0.1:8000/api/register/",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ firstName, lastName, email, username, password }),
+				}
+			);
+
+			const data = await response.json();
+		}
 	};
 	return (
 		<div className="min-h-screen flex flex-col justify-center items-center bg-black text-white relative overflow-hidden">
