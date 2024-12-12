@@ -4,9 +4,6 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from .models import RadarFile
 from .utils import process_sort_file, create_error_response
-import logging
-
-logger = logging.getLogger(__name__)
 
 #Controller for uploading and processing a .SORT file
 @csrf_exempt
@@ -14,8 +11,6 @@ logger = logging.getLogger(__name__)
 #@permission_classes([IsAuthenticated])
 def upload_and_process_file(request):
     try:
-        logger.debug(f"Request method: {request.method}")
-        logger.debug(f"Request FILES: {request.FILES}")
         file = request.FILES.get('file')
 
         # Check if file is uploaded
@@ -34,13 +29,11 @@ def upload_and_process_file(request):
         # Save the uploaded file and associate with user
         radar_file = RadarFile(file=file, user=request.user)
         radar_file.save()
-        logger.debug(f"Saved file at: {radar_file.file.path}")
 
         # Process the .SORT file
         try:
             metadata, images, cartesian_data = process_sort_file(radar_file.file.path)
         except Exception as e:
-            logger.error(f"Error during .SORT file processing for {file.name}: {e}")
             return create_error_response("Failed to process the .SORT file. Ensure the file format is correct.", 500)
 
         # Validate results from processing
@@ -60,13 +53,9 @@ def upload_and_process_file(request):
                 "x": cartesian_data["x"].tolist(),  # Convert NumPy array to list
                 "y": cartesian_data["y"].tolist(),
             }
-        else:
-            logger.warning("Cartesian data is unavailable or incomplete.")
-
         return JsonResponse(response_data, status=200)
 
     except Exception as e:
-        logger.error(f"Unexpected error during file processing: {e}")
         return create_error_response("An unexpected error occurred while processing the file.", 500)
 
 #Controller for fetching all files uploaded by the authenticated user
@@ -98,7 +87,6 @@ def get_user_files(request):
         }, status=200)
 
     except Exception as e:
-        logger.error(f"Error retrieving user files: {e}")
         return JsonResponse({
             "message": "An error occurred while fetching the files",
             "error": str(e)
@@ -117,9 +105,6 @@ def delete_user_file(request, file_id):
         except RadarFile.DoesNotExist:
             return create_error_response("File not found or does not belong to the user.", 404)
 
-        # Log the file deletion attempt
-        logger.info(f"User '{user.username}' is deleting file '{radar_file.file.name}' (ID: {file_id})")
-
         # Delete the file
         radar_file.delete()
 
@@ -129,7 +114,6 @@ def delete_user_file(request, file_id):
         }, status=200)
 
     except Exception as e:
-        logger.error(f"Error deleting user file (ID: {file_id}): {e}")
         return create_error_response("An error occurred while deleting the file.", 500)
 
 
@@ -146,9 +130,6 @@ def get_user_file(request, file_id):
             radar_file = RadarFile.objects.get(user=user, id=file_id)
         except RadarFile.DoesNotExist:
             return create_error_response("File not found or does not belong to the user.", 404)
-
-        # Log the file retrieval
-        logger.info(f"User '{user.username}' retrieved file '{radar_file.file.name}' (ID: {file_id})")
 
         # Process the .SORT file using the utility function
         metadata, images, cartesian_data = process_sort_file(radar_file.file.path)
@@ -178,5 +159,4 @@ def get_user_file(request, file_id):
         }, status=200)
 
     except Exception as e:
-        logger.error(f"Error retrieving user file (ID: {file_id}): {e}")
         return create_error_response("An error occurred while fetching the file.", 500)
