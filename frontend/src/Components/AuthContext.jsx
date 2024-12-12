@@ -1,16 +1,40 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 	const [authState, setAuthState] = useState({
-		isLoggedIn: false,
-		username: "",
-		isAdmin: false,
+		isLoggedIn: localStorage.getItem("isLoggedIn") === "true",
+		username: localStorage.getItem("username") || "",
+		isAdmin: localStorage.getItem("isAdmin") === "true",
 	});
 
+	// logout function
+	const logout = () => {
+		localStorage.removeItem("isLoggedIn");
+		localStorage.removeItem("username");
+		localStorage.removeItem("isAdmin");
+		setAuthState({
+			isLoggedIn: false,
+			username: "",
+			isAdmin: false,
+		});
+	};
+
+	useEffect(() => {
+		if (authState.isLoggedIn) {
+			localStorage.setItem("isLoggedIn", "true");
+			localStorage.setItem("username", authState.username);
+			localStorage.setItem("isAdmin", "true");
+		} else {
+			localStorage.removeItem("isLoggedIn");
+			localStorage.removeItem("username");
+			localStorage.removeItem("isAdmin");
+		}
+	}, [authState]);
+
 	return (
-		<AuthContext.Provider value={{ authState, setAuthState }}>
+		<AuthContext.Provider value={{ authState, setAuthState, logout }}>
 			{children}
 		</AuthContext.Provider>
 	);
