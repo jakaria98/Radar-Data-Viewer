@@ -24,18 +24,48 @@ export default function RegisterUser() {
 					User Registration
 				</h2>
 				<form onSubmit={handleRegistration} className="space-y-4">
+					<div className="flex gap-4">
+						<div>
+							<label
+								htmlFor="firstName"
+								className="block text-green-400 mb-2"
+							>
+								First Name
+							</label>
+							<input
+								type="text"
+								id="firstName"
+								className="w-full px-4 py-2 bg-black text-white border border-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+								placeholder="First Name"
+							/>
+						</div>
+						<div>
+							<label
+								htmlFor="lastName"
+								className="block text-green-400 mb-2"
+							>
+								Last Name
+							</label>
+							<input
+								type="text"
+								id="lastName"
+								className="w-full px-4 py-2 bg-black text-white border border-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+								placeholder="Last Name"
+							/>
+						</div>
+					</div>
 					<div>
 						<label
-							htmlFor="name"
+							htmlFor="email"
 							className="block text-green-400 mb-2"
 						>
-							Name
+							Email Address
 						</label>
 						<input
-							type="text"
-							id="name"
+							type="email"
+							id="email"
 							className="w-full px-4 py-2 bg-black text-white border border-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-							placeholder="Enter your full name"
+							placeholder="Enter your email address"
 						/>
 					</div>
 					<div>
