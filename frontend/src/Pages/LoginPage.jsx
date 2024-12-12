@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Components/AuthContext";
 import RadarAnimation from "../Components/RadarAnimation";
 
 const LoginPage = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [message, setMessage] = useState("");
+	const navigate = useNavigate();
+	const { setAuthState } = useAuth();
 
-	const handleLogin = async () => {
+	const handleLogin = async (e) => {
+		e.preventDefault();
 		if (!username || !password) {
 			setMessage("Please enter both username and password.");
 			return;
