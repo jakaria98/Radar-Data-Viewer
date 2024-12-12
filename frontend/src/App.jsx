@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import AllUsers from "./Pages/AllUsers";
 import DataViewer from "./Pages/DataViewer";
+import History from "./Pages/History";
 import LoginPage from "./Pages/LoginPage";
 import RegisterUser from "./Pages/RegisterUser";
 import UploadFile from "./Pages/UploadFile";
@@ -43,6 +44,14 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<AllUsers />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/history"
+					element={
+						<ProtectedRoute>
+							<History />
 						</ProtectedRoute>
 					}
 				/>
