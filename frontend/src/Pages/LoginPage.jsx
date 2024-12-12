@@ -50,7 +50,6 @@ const LoginPage = () => {
 					isAdmin: hasAdminStatus,
 				});
 
-				setMessage("Login successful!");
 				navigate("/home");
 			} else {
 				setMessage(data.message || "Invalid username or password.");
