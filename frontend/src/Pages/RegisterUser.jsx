@@ -8,9 +8,18 @@ export default function RegisterUser() {
 	const navigate = useNavigate();
 	const { authState } = useAuth();
 	useEffect(() => {
+		console.log(authState.isAdmin);
 		// if not logged in or not admin
-		if (!authState.isLoggedIn || !authState.isAdmin) {
+		if (!authState.isLoggedIn) {
+			console.log("Not Logged In");
 			navigate("/login");
+			return;
+		}
+
+		if (authState.isAdmin === false) {
+			console.log("not admin");
+			navigate("/");
+			return;
 		}
 	}, [authState.isLoggedIn, authState.isAdmin, navigate]);
 

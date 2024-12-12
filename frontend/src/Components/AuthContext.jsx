@@ -25,7 +25,10 @@ export const AuthProvider = ({ children }) => {
 		if (authState.isLoggedIn) {
 			localStorage.setItem("isLoggedIn", "true");
 			localStorage.setItem("username", authState.username);
-			localStorage.setItem("isAdmin", "true");
+			localStorage.setItem(
+				"isAdmin",
+				authState.isAdmin ? "true" : "false"
+			);
 		} else {
 			localStorage.removeItem("isLoggedIn");
 			localStorage.removeItem("username");
