@@ -110,11 +110,33 @@ const DataViewer = () => {
 			timestamp: "",
 		};
 
-		return Object.entries(metadata).map(([key, value]) => {
-			const label = metadataMap[key] || key;
-			const unit = units[key] || "";
-			return `${label}: ${value} ${unit}`.trim();
-		});
+		const orderedKeys = [
+			"num_samples",
+			"frequency",
+			"year",
+			"rangeRes",
+			"trueNorth",
+			"rate",
+			"num_ranges",
+			"num_antennas",
+			"latitude",
+			"longitude",
+			"MT",
+			"PWR",
+			"MD",
+			"OFFSET",
+			"RXOFFSET",
+			"HD",
+			"timestamp",
+		];
+
+		return orderedKeys
+			.filter((key) => key in metadata)
+			.map((key) => {
+				const label = metadataMap[key] || key;
+				const unit = units[key] || "";
+				return `${label}: ${metadata[key]} ${unit}`.trim();
+			});
 	};
 
 	return (
