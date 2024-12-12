@@ -12,7 +12,7 @@ function App() {
 				<Route path="/login" element={<LoginPage />} />
 
 				<Route
-					path="/addUser"
+					path="/register"
 					element={
 						<ProtectedRoute>
 							<RegisterUser />

@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Components/AuthContext";
 import RadarAnimation from "../Components/RadarAnimation";
 
 export default function RegisterUser() {
+	const navigate = useNavigate();
+	const { authState } = useAuth();
+	useEffect(() => {
+		// if not logged in or not admin
+		if (!authState.isLoggedIn || !authState.isAdmin) {
+			navigate("/login");
+		}
+	}, [authState.isLoggedIn, authState.isAdmin, navigate]);
+
 	const handleRegistration = () => {
 		console.log("Registration handling");
 	};
