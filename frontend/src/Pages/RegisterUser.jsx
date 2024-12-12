@@ -136,7 +136,7 @@ export default function RegisterUser() {
 						<div>
 							<button
 								type="submit"
-								className="w-full px-4 py-2 bg-green-400 text-black font-semibold rounded-md shadow hover:bg-green-500 transition-all duration-300"
+								className="w-full px-4 py-2 bg-green-400 text-black font-medium rounded-md shadow hover:bg-green-500 transition-all duration-300"
 							>
 								Register
 							</button>
