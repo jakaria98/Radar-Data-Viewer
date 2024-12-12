@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Components/AuthContext";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import RadarAnimation from "../Components/RadarAnimation";
@@ -8,6 +9,13 @@ const UploadFile = () => {
 	const [file, setFile] = useState(null);
 	const [message, setMessage] = useState("");
 	const navigate = useNavigate();
+
+	const { authState } = useAuth();
+	useEffect(() => {
+		if (!authState.isLoggedIn) {
+			navigate("/login");
+		}
+	}, [authState.isLoggedIn, navigate]);
 
 	const handleFileChange = (e) => {
 		setFile(e.target.files[0]);
