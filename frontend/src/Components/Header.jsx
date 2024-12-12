@@ -48,7 +48,7 @@ const Header = () => {
 								<li
 									className="cursor-pointer hover:bg-green-400 text-green-400 hover:text-black text-center py-2"
 									onClick={() =>
-										handleNavigation("/")
+										handleNavigation("/home")
 									}
 								>
 									Home

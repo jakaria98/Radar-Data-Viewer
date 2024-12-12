@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Components/AuthContext";
 import RadarAnimation from "../Components/RadarAnimation";
@@ -8,7 +8,13 @@ const LoginPage = () => {
 	const [password, setPassword] = useState("");
 	const [message, setMessage] = useState("");
 	const navigate = useNavigate();
-	const { setAuthState } = useAuth();
+	const { authState, setAuthState } = useAuth();
+
+	useEffect(() => {
+		if (authState.isLoggedIn) {
+			navigate("/home");
+		}
+	}, [authState.isLoggedIn, navigate]);
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
@@ -45,7 +51,7 @@ const LoginPage = () => {
 				});
 
 				setMessage("Login successful!");
-				navigate("/");
+				navigate("/home");
 			} else {
 				setMessage(data.message || "Invalid username or password.");
 			}
@@ -62,7 +68,26 @@ const LoginPage = () => {
 				<RadarAnimation />
 			</div>
 
-			{/* Login Form */}
+			<div className="w-[400px] p-2 relative z-10 mb-6">
+				<h3 className="text-center font-bold text-2xl">
+					Welcome To
+				</h3>
+				<h1 className="text-center text-green-400 text-4xl">
+					Radar Data Viewer
+				</h1>
+			</div>
+
+			<div
+				className="w-[400px] bg-glass border-2 border-green-400 rounded-lg shadow-glass p-2 relative z-10 mb-4"
+				style={{
+					backdropFilter: "blur(10px)",
+					background: "rgba(255, 255, 255, 0.1)",
+				}}
+			>
+				<h4 className="text-lg text-green-400 text-center">
+					Login to your account
+				</h4>
+			</div>
 			<div
 				className="w-[400px] bg-glass border-2 border-green-400 rounded-lg shadow-glass p-6 relative z-10"
 				style={{
@@ -70,9 +95,6 @@ const LoginPage = () => {
 					background: "rgba(255, 255, 255, 0.1)",
 				}}
 			>
-				<h2 className="text-2xl font-bold text-green-400 text-center mb-6">
-					Login
-				</h2>
 				<form onSubmit={handleLogin} className="space-y-4">
 					{/* Username */}
 					<div>

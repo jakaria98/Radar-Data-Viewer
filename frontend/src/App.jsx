@@ -9,6 +9,7 @@ function App() {
 	return (
 		<Router>
 			<Routes>
+				<Route path="/" element={<LoginPage />} />
 				<Route path="/login" element={<LoginPage />} />
 
 				<Route
@@ -21,7 +22,7 @@ function App() {
 				/>
 
 				<Route
-					path="/"
+					path="/home"
 					element={
 						<ProtectedRoute>
 							<DataViewer />
