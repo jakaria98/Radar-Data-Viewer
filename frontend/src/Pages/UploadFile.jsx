@@ -28,7 +28,7 @@ const UploadFile = () => {
 			return;
 		}
 
-		if (!authState.token) {
+		if (!localStorage.getItem("authToken")) {
 			setMessage("You are not authorized. Please log in.");
 			navigate("/login"); // Redirect to login page if token is missing
 			return;
@@ -44,7 +44,7 @@ const UploadFile = () => {
 					method: "POST",
 					body: formData,
 					headers: {
-						Authorization: `Token ${authState.token}`, // Include token here
+						Authorization: `Token ${localStorage.getItem("authToken")}`, // Include token here
 					},
 				}
 			);
