@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'radarViewer',
+    'User',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +76,19 @@ TEMPLATES = [
     },
 ]
 
+
+# REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',
+        'rest_framework.throttling.AnonRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '5000/minute',
+        'anon': '5000/minute',
+    },
+}
+
 WSGI_APPLICATION = 'radarDataViewer.wsgi.application'
 
 
@@ -87,6 +102,9 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

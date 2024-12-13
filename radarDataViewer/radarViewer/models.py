@@ -1,8 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User  # Import the User model for associating the file with a user
 from datetime import datetime
 import os
 
-# function to add timestamp to the uploaded file
+# Function to add a timestamp to the uploaded file
 def timestamped_file_path(instance, filename):
     # Get the file extension
     ext = filename.split('.')[-1]
@@ -13,8 +14,15 @@ def timestamped_file_path(instance, filename):
 
 # Model to store the uploaded radar file
 class RadarFile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)  # Associate the file with a user
     file = models.FileField(upload_to=timestamped_file_path)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
+        if self.user:
+            return f"{self.file.name} uploaded by {self.user.username} at {self.uploaded_at}"
         return self.file.name
+
+
+

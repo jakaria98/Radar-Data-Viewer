@@ -90,8 +90,9 @@ def parse_sort_header(header):
     try:
         patterns = {
             'num_samples': r'(\d+)\s+SAMPLES',
-            'frequency': r'FREQUI?EN[ZCY]\s+([\d.]+)MHZ',
+            'timestamp': r'(\d{2}-[A-Z]{3}-\d{2}\s+\d{2}:\d{2}\s+UTC)',
             'year': r'YEAR\s+(\d{4})',
+            'frequency': r'FREQUI?EN[ZCY]\s+([\d.]+)MHZ',
             'rangeRes': r'RANGE:\s*([\d.]+)\s*KM',
             'trueNorth': r'TRUENORTH:\s*([\d.]+)\s*GRAD',
             'rate': r'RATE:\s*([\d.]+)S',
@@ -99,25 +100,37 @@ def parse_sort_header(header):
             'num_antennas': r'ANT:\s*(\d+)',
             'latitude': r'WBREITE:\s*([\d-]+)',
             'longitude': r'LAENGE:\s*([\d-]+)',
+            'MT': r'MT:\s*(\d+)',
+            'PWR': r'PWR:\s*(\d+)',
+            'MD': r'MD:\s*(\d+)',
+            'OFFSET': r'OFFSET:\s*([\d.]+)',
+            'RXOFFSET': r'RXOFFSET:\s*([\d.]+)',
+            'HD': r'HD:\s*(\d+)',
+            'description': r'(June\s+\d+\s+-\s+continuous)',
         }
+
         for key, pattern in patterns.items():
             match = re.search(pattern, header, re.IGNORECASE)
             if match:
                 value = match.group(1)
+                # Handle specific cases for units
                 if key in ['latitude', 'longitude']:
                     metadata[key] = dms_to_decimal(value)
+                elif key in ['num_samples', 'num_ranges', 'num_antennas', 'MT', 'PWR', 'MD', 'HD']:
+                    metadata[key] = int(value)
+                elif key in ['frequency', 'rangeRes', 'rate', 'OFFSET', 'RXOFFSET']:
+                    metadata[key] = float(value)
                 else:
-                    metadata[key] = float(value) if '.' in value else int(value)
+                    metadata[key] = value
             else:
-                logger.error(f"Missing required metadata: {key}")
-                raise ValueError(f"Missing required metadata: {key}")
+                logger.warning(f"Missing metadata field: {key}")
+
+        logger.info(f"Extracted metadata: {metadata}")
+        return metadata
 
     except Exception as e:
         logger.error(f"Error parsing header: {e}")
         raise
-
-    logger.info(f"Extracted metadata: {metadata}")
-    return metadata
 
 # Converts a coordinate from DMS format to decimal degrees.
 def dms_to_decimal(dms_str):

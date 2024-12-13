@@ -492,3 +492,1947 @@ Traceback (most recent call last):
            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'dict'>`
 "POST /api/upload/ HTTP/1.1" 500 145
+Internal Server Error: /admin/radarViewer/radarfile/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: radarViewer_radarfile.user_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/options.py", line 2140, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+                                                           ~~~^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: radarViewer_radarfile.user_id
+"GET /admin/radarViewer/radarfile/ HTTP/1.1" 500 145
+Internal Server Error: /admin/radarViewer/radarfile/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: radarViewer_radarfile.user_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/options.py", line 2140, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+                                                           ~~~^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: radarViewer_radarfile.user_id
+"GET /admin/radarViewer/radarfile/ HTTP/1.1" 500 145
+Internal Server Error: /admin/radarViewer/radarfile/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: radarViewer_radarfile.user_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/options.py", line 2140, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+                                                           ~~~^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: radarViewer_radarfile.user_id
+"GET /admin/radarViewer/radarfile/ HTTP/1.1" 500 145
+Internal Server Error: /admin/radarViewer/radarfile/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+"GET /admin/radarViewer/radarfile/ HTTP/1.1" 500 145
+Internal Server Error: /admin/radarViewer/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+"GET /admin/radarViewer/ HTTP/1.1" 500 145
+Internal Server Error: /admin/auth/user/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+"GET /admin/auth/user/ HTTP/1.1" 500 145
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+"GET /admin/ HTTP/1.1" 500 145
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+"GET /admin/ HTTP/1.1" 500 145
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+"GET /admin/ HTTP/1.1" 500 145
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+"GET /admin/ HTTP/1.1" 500 145
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+"GET /admin/ HTTP/1.1" 500 145
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+"GET /admin/ HTTP/1.1" 500 145
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 30, in register
+    token = Token.objects.create(user=user)
+            ^^^^^^^^^^^^^
+AttributeError: type object 'Token' has no attribute 'objects'
+"POST /api/register/ HTTP/1.1" 500 145
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 87, in update_user
+    serializer = UpdateUserSerializer(user, data=request.data, partial=True)  # Allow partial updates
+                 ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'UpdateUserSerializer' is not defined. Did you mean: 'UserSerializer'?
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 91, in update_user
+    serializer.save()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 203, in save
+    self.instance = self.update(self.instance, validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 37, in update
+    instance.first_name = validated_data.get('first_name', instance.first_name)
+                                                           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'first_name'
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 91, in update_user
+    serializer.save()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 203, in save
+    self.instance = self.update(self.instance, validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 37, in update
+    instance.first_name = validated_data.get('first_name', instance.first_name)
+                                                           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'first_name'
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 91, in update_user
+    serializer.save()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 203, in save
+    self.instance = self.update(self.instance, validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 37, in update
+    instance.first_name = validated_data.get('first_name', instance.first_name)
+                                                           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'first_name'
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 70, in register
+    user = serializer.save()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 208, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 22, in create
+    user.set_password(validated_data['password'])
+                      ~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'password'
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 96, in update_user
+    serializer.save()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 203, in save
+    self.instance = self.update(self.instance, validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 39, in update
+    instance.first_name = validated_data.get('first_name', instance.first_name)
+                                                           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'first_name'
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 96, in update_user
+    serializer.save()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 203, in save
+    self.instance = self.update(self.instance, validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 39, in update
+    instance.first_name = validated_data.get('first_name', instance.first_name)
+                                                           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'first_name'
+Internal Server Error: /api/update/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 96, in update_user
+    serializer.save()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 203, in save
+    self.instance = self.update(self.instance, validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 39, in update
+    instance.first_name = validated_data.get('first_name', instance.first_name)
+                                                           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'first_name'
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 55, in register
+    user = serializer.save()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 208, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 17, in create
+    email=validated_data['email'],
+          ~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'email'
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 147, in register
+    user = serializer.save()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 208, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 20, in create
+    first_name=validated_data['first_name'],
+               ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'first_name'
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 147, in register
+    user = serializer.save()
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 208, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/serializers.py", line 26, in create
+    first_name=validated_data['first_name'],
+               ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'first_name'
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 152, in register
+    print(serializer.errors )
+          ^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 576, in errors
+    ret = super().errors
+          ^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/serializers.py", line 260, in errors
+    raise AssertionError(msg)
+AssertionError: You must call `.is_valid()` before accessing `.errors`.
+"POST /api/register/ HTTP/1.1" 500 145
+Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jakaria/.local/share/virtualenvs/project-UJpDbUi0/lib/python3.13/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/jakaria/Documents/CAPSTONE/project/radarDataViewer/User/views.py", line 135, in login_view
+    print(serializer.data)
+          ^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'serializer' where it is not associated with a value
+"POST /api/login/ HTTP/1.1" 500 145
+Internal Server Error: /api/files/
+"GET /api/files/ HTTP/1.1" 500 172
+Internal Server Error: /api/files/
+"GET /api/files/ HTTP/1.1" 500 172
+Internal Server Error: /api/files/
+"GET /api/files/ HTTP/1.1" 500 172
