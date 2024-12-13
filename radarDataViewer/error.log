@@ -2430,3 +2430,9 @@ Traceback (most recent call last):
           ^^^^^^^^^^
 UnboundLocalError: cannot access local variable 'serializer' where it is not associated with a value
 "POST /api/login/ HTTP/1.1" 500 145
+Internal Server Error: /api/files/
+"GET /api/files/ HTTP/1.1" 500 172
+Internal Server Error: /api/files/
+"GET /api/files/ HTTP/1.1" 500 172
+Internal Server Error: /api/files/
+"GET /api/files/ HTTP/1.1" 500 172

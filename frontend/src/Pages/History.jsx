@@ -17,7 +17,35 @@ export default function History() {
 		}
 	}, [authState.isLoggedIn, navigate]);
 
-	const [historyFiles, setHistoryFiles] = useState(["dsdsds"]);
+	const [historyFiles, setHistoryFiles] = useState([]);
+	const [error, setError] = useState("");
+
+	useEffect(() => {
+		const fetchHistory = async () => {
+			try {
+				const response = await fetch(
+					"http://127.0.0.1:8000/api/files/",
+					{
+						method: "GET",
+						headers: {
+							Authorization: `Token ${authState.token}`,
+						},
+					}
+				);
+
+				const data = await response.json();
+				if (response.ok) {
+					console.log(data);
+				} else {
+					setError(data.message || "Failed to fetch.");
+				}
+			} catch (err) {
+				setError("An error occured");
+			}
+		};
+
+		fetchHistory();
+	}, []);
 
 	return (
 		<div className="min-h-screen flex flex-col bg-black text-white relative overflow-hidden">
