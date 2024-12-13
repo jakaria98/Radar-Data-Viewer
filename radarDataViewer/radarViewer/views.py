@@ -63,6 +63,8 @@ def upload_and_process_file(request):
 
 #Controller for fetching all files uploaded by the authenticated user
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 #@permission_classes([IsAuthenticated])  # Ensure only authenticated users can access this API
 def get_user_files(request):
     try:
