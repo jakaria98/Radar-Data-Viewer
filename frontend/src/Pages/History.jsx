@@ -28,7 +28,9 @@ export default function History() {
 					{
 						method: "GET",
 						headers: {
-							Authorization: `Token ${authState.token}`,
+							Authorization: `Token ${localStorage.getItem(
+								"authToken"
+							)}`,
 						},
 					}
 				);
@@ -36,6 +38,7 @@ export default function History() {
 				const data = await response.json();
 				if (response.ok) {
 					console.log(data);
+					setHistoryFiles(data?.files);
 				} else {
 					setError(data.message || "Failed to fetch.");
 				}
@@ -75,25 +78,72 @@ export default function History() {
 							}}
 						>
 							<table className="w-full text-left border-separate border-spacing-y-4">
-								<tbody>
-									<tr
-										className="bg-glass text-green-400 shadow-glass hover:text-white"
-										style={{
-											backdropFilter:
-												"blur(10px)",
-											background:
-												"rgba(255, 255, 255, 0)",
-										}}
-									>
-										<td className="px-6 py-4">
-											Lorem ipsum dolor sit
-											amet consectetur
-											adipisicing elit. Iusto
-											impedit assumenda
-											provident, laborum
-											ratione tempore?
-										</td>
+								<thead
+									className="bg-glass text-white font-medium shadow-glass"
+									style={{
+										backdropFilter: "blur(10px)",
+										background:
+											"rgba(255, 255, 255, 0)",
+									}}
+								>
+									<tr>
+										<th className="px-6 py-4 text-center">
+											File Name
+										</th>
+										<th className="px-6 py-4 text-center">
+											Uploaded At
+										</th>
 									</tr>
+								</thead>
+								<tbody>
+									{historyFiles.length > 0 ? (
+										historyFiles.map(
+											(hfile, index) => (
+												<tr
+													key={index}
+													className="bg-glass text-green-400 shadow-glass hover:text-white"
+													style={{
+														backdropFilter:
+															"blur(10px)",
+														background:
+															"rgba(255, 255, 255, 0)",
+													}}
+												>
+													<td
+														className="px-6 py-4 text-center underline cursor-pointer"
+														onClick={() =>
+															navigate(
+																"/home",
+																{
+																	state: {
+																		data: hfile,
+																	},
+																}
+															)
+														}
+													>
+														{
+															hfile.filename
+														}
+													</td>
+													<td className="px-6 py-4 text-center">
+														{
+															hfile.uploaded_at
+														}
+													</td>
+												</tr>
+											)
+										)
+									) : (
+										<tr>
+											<td
+												colSpan="4"
+												className="px-6 py-4 text-center text-gray-400"
+											>
+												No history available
+											</td>
+										</tr>
+									)}
 								</tbody>
 							</table>
 						</div>
