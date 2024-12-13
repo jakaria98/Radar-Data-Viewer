@@ -26,24 +26,10 @@ class LoginUserThrottle(UserRateThrottle):
 def login_view(request):
     username = request.data.get('username')
     password = request.data.get('password')
-    print(username, password)
     if not username or not password:
         return Response({"detail": "Username and password are required"}, status=status.HTTP_400_BAD_REQUEST)
     
     user = authenticate(request, username=username, password=password)
-    if user is None:
-        print("Authentication failed. Debugging user data:")
-        from django.contrib.auth.models import User
-        test_user = User.objects.filter(username='joy').first()
-        if test_user:
-            print(f"User exists: {test_user}")
-            print(f"User is_active: {test_user.is_active}")
-            print(f"Password hash: {test_user.password}")
-            print(f"Password check: {test_user.check_password('pass1234')}")
-        else:
-            print("User does not exist.")
-    else:
-        print("Authentication successful.")
     print(user)
     if user is None:
         return Response({"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
@@ -90,11 +76,10 @@ def update_user(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 def get_all_users(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
+    print(serializer.data)
     return Response({
         "users": serializer.data,
         "message": "Users fetched successfully"
