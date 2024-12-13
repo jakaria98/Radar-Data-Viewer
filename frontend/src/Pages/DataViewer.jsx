@@ -167,10 +167,9 @@ const DataViewer = () => {
 								No Data Available
 							</h1>
 							<p className="text-gray-300 text-lg mb-8 leading-relaxed">
-								You currently don’t have any radar data
-								loaded. Start by uploading your radar
-								file to explore the data seamlessly in
-								our viewer.
+								Start by uploading your radar file to
+								explore the data seamlessly in our
+								viewer.
 							</p>
 
 							<div className="w-16 h-[2px] bg-green-400 mx-auto mb-6"></div>
