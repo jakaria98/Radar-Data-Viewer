@@ -307,7 +307,6 @@ const DataViewer = () => {
 											))
 										) : (
 											<tr
-												key={index}
 												className="bg-glass text-green-400 shadow-glass hover:text-white"
 												style={{
 													backdropFilter:
