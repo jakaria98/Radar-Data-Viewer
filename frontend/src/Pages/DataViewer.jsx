@@ -13,7 +13,7 @@ const DataViewer = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isPlaying, setIsPlaying] = useState(true); // State to control play/pause
 	const radarData = location.state && location.state.data;
-	console.log(radarData);
+
 	const { authState } = useAuth();
 	useEffect(() => {
 		if (!authState.isLoggedIn) {
@@ -65,8 +65,6 @@ const DataViewer = () => {
 	const togglePlayPause = () => {
 		setIsPlaying(!isPlaying);
 	};
-
-	console.log(metadata);
 
 	// formating the metadata
 	const formatMetadata = (metadata) => {
