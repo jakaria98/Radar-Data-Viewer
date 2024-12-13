@@ -81,12 +81,12 @@ const DataViewer = () => {
 			num_antennas: "Number of Antennas",
 			latitude: "Latitude",
 			longitude: "Longitude",
-			MT: "Maximum Transmission (MT)",
-			PWR: "Power (PWR)",
-			MD: "Mode (MD)",
+			MT: "Maximum Transmission",
+			PWR: "Power",
+			MD: "Mode",
 			OFFSET: "Offset",
-			RXOFFSET: "Receiver Offset (RXOFFSET)",
-			HD: "Heading (HD)",
+			RXOFFSET: "Receiver Offset",
+			HD: "Heading",
 			timestamp: "Timestamp",
 		};
 
@@ -141,7 +141,7 @@ const DataViewer = () => {
 					!Number.isInteger(metadata[key])
 						? metadata[key].toFixed(2)
 						: metadata[key];
-				return `${label}: ${value} ${unit}`.trim();
+				return { label, value, unit };
 			});
 	};
 
@@ -269,29 +269,59 @@ const DataViewer = () => {
 										"rgba(255, 255, 255, 0.1)",
 								}}
 							>
-								<h2 className="text-xl font-semibold text-green-400 mb-4">
-									Image Metadata
+								<h2 className="text-xl font-semibold text-green-400 mb-2">
+									Image Information
 								</h2>
-								<ul className="list-disc pl-5 text-gray-200">
-									{metadata &&
-									Object.keys(metadata).length >
-										0 ? (
-										formatMetadata(metadata).map(
-											(item, index) => (
-												<li
+								<table className="w-full text-left border-separate border-spacing-y-4">
+									<tbody>
+										{metadata &&
+										Object.keys(metadata).length >
+											0 ? (
+											formatMetadata(
+												metadata
+											).map((item, index) => (
+												<tr
 													key={index}
-													className="py-1"
+													className="bg-glass shadow-glass"
+													style={{
+														backdropFilter:
+															"blur(10px)",
+														background:
+															"rgba(255, 255, 255, 0)",
+													}}
 												>
-													{item}
-												</li>
-											)
-										)
-									) : (
-										<li>
-											No metadata available!
-										</li>
-									)}
-								</ul>
+													<td className=" px-2 py-1">
+														{
+															item.label
+														}
+													</td>
+													<td className="px-2 py-1">
+														{`${item.value}  `}{" "}
+														<span className="text-green-400">
+															{
+																item.unit
+															}
+														</span>
+													</td>
+												</tr>
+											))
+										) : (
+											<tr
+												key={index}
+												className="bg-glass text-green-400 shadow-glass hover:text-white"
+												style={{
+													backdropFilter:
+														"blur(10px)",
+													background:
+														"rgba(255, 255, 255, 0)",
+												}}
+											>
+												No Metadata
+												available!
+											</tr>
+										)}
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</main>
