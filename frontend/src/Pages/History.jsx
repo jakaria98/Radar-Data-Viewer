@@ -50,6 +50,32 @@ export default function History() {
 		fetchHistory();
 	}, []);
 
+	const handleSingleFile = async (fID) => {
+		try {
+			const res = await fetch(
+				`http://127.0.0.1:8000/api/files/${fID}/`,
+				{
+					method: "GET",
+					headers: {
+						Authorization: `Token ${localStorage.getItem(
+							"authToken"
+						)}`,
+					},
+				}
+			);
+
+			const data = await res.json();
+
+			if (res.ok) {
+				navigate("/home", { state: { data } });
+			} else {
+				console.error("Failed to fetch: ", data.message);
+			}
+		} catch (err) {
+			console.error("Error fetching: ", err);
+		}
+	};
+
 	return (
 		<div className="min-h-screen flex flex-col bg-black text-white relative overflow-hidden">
 			<div className="absolute inset-0 pointer-events-none flex justify-center items-center">
@@ -112,13 +138,8 @@ export default function History() {
 													<td
 														className="px-6 py-4 text-center underline cursor-pointer"
 														onClick={() =>
-															navigate(
-																"/home",
-																{
-																	state: {
-																		data: hfile,
-																	},
-																}
+															handleSingleFile(
+																hfile.id
 															)
 														}
 													>

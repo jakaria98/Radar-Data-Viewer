@@ -125,6 +125,8 @@ def delete_user_file(request, file_id):
 #Controller for fetching a file uploaded by the authenticated user
 @api_view(['GET'])
 #@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def get_user_file(request, file_id):
     try:
         # Get the authenticated user
@@ -141,16 +143,6 @@ def get_user_file(request, file_id):
         if metadata is None or images is None:
             return create_error_response("Failed to process the .SORT file. Ensure the file format is correct.", 500)
 
-        # Prepare the file data for the response
-        file_data = {
-            "id": radar_file.id,
-            "filename": radar_file.file.name,
-            "uploaded_at": radar_file.uploaded_at.strftime("%Y-%m-%d %H:%M:%S"),
-            "file_url": radar_file.file.url,  # Optional if frontend needs it
-            "metadata": metadata,
-            "images": images,  # Base64-encoded images from the `process_sort_file` function
-        }
-
         # Include Cartesian data if available
         if cartesian_data and "x" in cartesian_data and "y" in cartesian_data:
             file_data["cartesian_data"] = {
@@ -160,7 +152,8 @@ def get_user_file(request, file_id):
 
         return JsonResponse({
             "message": "File retrieved and processed successfully",
-            "file": file_data
+            "metadata": metadata,
+            "images": images, 
         }, status=200)
 
     except Exception as e:
