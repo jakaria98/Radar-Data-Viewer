@@ -73,3 +73,17 @@ The ReactJS front-end enables users to upload radar files, view visualizations, 
 2. More than 22 unit test cases have been written in Django to check the functional features such as the User module and File upload module separately.
 3. The CI/CD build phase checks the project build errors such as compilation errors and run time environment errors. If the build is completed successfully, it goes to the next phase ‘test phase’.
 4. In the test phase, the CI/CD pipeline runs all the test cases from the tests.py file and can only forward to the deployment phase if all the test cases are passed.
+
+### Test case coverage
+
+1. Model Testing:
+     - Validation of file path generation using timestamps.
+     - Verification of the RadarFile model's file storage and retrieval behavior.
+     - Testing of string representation for the RadarFile model.
+2. Utility Function Testing
+     - Transformation of DMS (Degrees, Minutes, Seconds) coordinates into decimal format.
+     - Generation of base64-encoded images from numerical data arrays.
+     - Handling of edge cases and invalid inputs in utility functions.
+3. User Authentication Testing
+     - Validation of login functionality with various combinations of usernames and passwords.
+     - Ensuring robust handling of edge cases like empty or invalid input fields.
