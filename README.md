@@ -4,6 +4,24 @@
 
 The Radar Data Viewer Project is be a web-based software designed to visualize high-frequency (HF) and X-Band radar data. Initially, it focuses on displaying radar data files in a B-Scan format, with plans to expand to multiple files and animations in the future. The web application also shows key details such as when and where the radar data was collected, the transmission frequency, bandwidth, and the maximum range. Although the first version of the software have limited functionality, it will be accessible from different operating systems like Windows, Ubuntu, etc. In addition to that, we plan to integrate advanced data analysis features, including spectrum and parameter extraction algorithms, in future versions of the software.
 
+### How to run the project
+
+#### \* Frontend
+
+To run the frontend server, you need to navigate to "frontend" folder and run the following command :
+
+```
+npm run dev
+```
+
+#### \* Frontend
+
+To run the backend server, you need to navigate to "radarDataViewer" folder and run the following command under the virtual environment :
+
+```
+python manage.py runserver 8000
+```
+
 ### System Architecture
 
 -    Backend: Django (Python)
