@@ -14,7 +14,7 @@ To run the frontend server, you need to navigate to "frontend" folder and run th
 npm run dev
 ```
 
-#### \* Frontend
+#### \* Backend
 
 To run the backend server, you need to navigate to "radarDataViewer" folder and run the following command under the virtual environment :
 
