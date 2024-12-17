@@ -21,6 +21,13 @@ pipenv shell
 pipenv install
 ```
 
+#### Apply migration:
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
 #### \* Backend
 
 To run the backend server, you need to run the following command under the virtual environment :
