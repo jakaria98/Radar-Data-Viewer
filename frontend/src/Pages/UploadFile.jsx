@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Components/AuthContext";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import RadarAnimation from "../Components/RadarAnimation";
@@ -9,42 +10,68 @@ const UploadFile = () => {
 	const [message, setMessage] = useState("");
 	const navigate = useNavigate();
 
+	const { authState } = useAuth();
+	useEffect(() => {
+		if (!authState.isLoggedIn) {
+			navigate("/login");
+		}
+	}, [authState.isLoggedIn, navigate]);
+
 	const handleFileChange = (e) => {
 		setFile(e.target.files[0]);
 	};
 
-	const handleUpload = async () => {
+	const handleUpload = async (e) => {
+		e.preventDefault();
 		if (!file) {
 			setMessage("Please select a file to upload.");
 			return;
 		}
-	
+
+		if (!localStorage.getItem("authToken")) {
+			setMessage("You are not authorized. Please log in.");
+			navigate("/login"); // Redirect to login page if token is missing
+			return;
+		}
+
 		const formData = new FormData();
-		formData.append("file", file); // Ensure the key matches "file" in your Django view
-	
+		formData.append("file", file);
+
 		try {
-			//console.log("Sending.......... ........ ........")
-			const response = await fetch("http://127.0.0.1:8000/api/upload/", {
-				method: "POST",
-				body: formData,
-				headers: {
-				},
-			});
-	
+			const response = await fetch(
+				"http://127.0.0.1:8000/api/upload/",
+				{
+					method: "POST",
+					body: formData,
+					headers: {
+						Authorization: `Token ${localStorage.getItem("authToken")}`, // Include token here
+					},
+				}
+			);
+
 			if (response.ok) {
-				//console.log("Got Response!!")
 				const data = await response.json();
 				setMessage("File uploaded successfully!");
-				navigate("/", { state: { data } }); // Pass response data
-				//console.log("Response:", data); // Log backend response for debugging
+				navigate("/home", { state: { data } }); // Redirect with the uploaded file data
 			} else {
-				//console.log("Errrrrorrrrrrr.....")
+				// Handle server errors and display proper message
 				const errorData = await response.json();
-				setMessage(`Failed to upload file: ${errorData.message || "Unknown error"}`);
+				if (response.status === 401) {
+					setMessage("Unauthorized. Please log in again.");
+					navigate("/login"); // Redirect to login on 401
+				} else {
+					setMessage(
+						`Failed to upload file: ${
+							errorData.message || "Unknown error"
+						}`
+					);
+				}
 			}
 		} catch (error) {
-			//console.error("Error uploading file:", error);
-			setMessage("Error uploading file. Please try again.");
+			console.error("Error uploading file:", error);
+			setMessage(
+				"An unexpected error occurred while uploading the file."
+			);
 		}
 	};
 
