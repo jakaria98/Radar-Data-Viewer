@@ -6,6 +6,29 @@ The Radar Data Viewer Project is be a web-based software designed to visualize h
 
 ### How to run the project
 
+#### Clone the project
+
+```
+git clone https://gitlab.com/rezacourses/engi9837_2024/marineradar/radardataviewerapp.git
+cd radarDataViewer
+```
+
+#### Setup the virtual environment
+
+```
+pip/pip3 install pipenv
+pipenv shell
+pipenv install
+```
+
+#### \* Backend
+
+To run the backend server, you need to run the following command under the virtual environment :
+
+```
+python manage.py runserver 8000
+```
+
 #### \* Frontend
 
 To run the frontend server, you need to navigate to "frontend" folder and run the following command :
@@ -13,13 +36,10 @@ To run the frontend server, you need to navigate to "frontend" folder and run th
 ```
 npm run dev
 ```
-
-#### \* Backend
-
-To run the backend server, you need to navigate to "radarDataViewer" folder and run the following command under the virtual environment :
+But before that don't forget to install all the dependecies by following command :
 
 ```
-python manage.py runserver 8000
+npm install
 ```
 
 ### System Architecture
@@ -105,3 +125,7 @@ The ReactJS front-end enables users to upload radar files, view visualizations, 
 3. User Authentication Testing
      - Validation of login functionality with various combinations of usernames and passwords.
      - Ensuring robust handling of edge cases like empty or invalid input fields.
+
+### username and password for testing
+username: jakaria
+password: jaka1234
