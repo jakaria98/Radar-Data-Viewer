@@ -9,7 +9,7 @@ The Radar Data Viewer Project is be a web-based software designed to visualize h
 #### Clone the project
 
 ```
-git clone https://gitlab.com/rezacourses/engi9837_2024/marineradar/radardataviewerapp.git
+git clone https://github.com/jakaria98/Radar-Data-Viewer.git
 cd radarDataViewer
 ```
 
