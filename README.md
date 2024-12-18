@@ -132,7 +132,3 @@ The ReactJS front-end enables users to upload radar files, view visualizations, 
 3. User Authentication Testing
      - Validation of login functionality with various combinations of usernames and passwords.
      - Ensuring robust handling of edge cases like empty or invalid input fields.
-
-### username and password for testing
-username: jakaria
-password: jaka1234
